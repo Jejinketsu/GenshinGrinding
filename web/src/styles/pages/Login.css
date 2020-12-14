@@ -1,0 +1,131 @@
+/*Definindo variáveis no css*/
+:root {
+    --color-background: #F0F0F7;
+    --color-primary-lighter: #9871F5;
+    --color-primary-light: #916BEA;
+    --color-primary: #8257E5;
+    --color-primary-dark: #774DD6;
+    --color-primary-darker: #6842c2;
+    --color-secondary: #04D361;
+    --color-secondary-dark: #04BF58;
+    --color-title-in-primary: #FFFFFF;
+    --color-text-in-primary: #D4C2FF;
+    --color-text-title: #32264D;
+    --color-text-complement: #9C98A6;
+    --color-text-base: #6A6180;
+    --color-line-in-white: #E6E6F0;
+    --color-input-background: #F8F8FC;
+    --color-button-text: #FFFFFF;
+    --color-box-base: #FFFFFF;
+    --color-box-footer: #FAFAFC;
+    --color-small-info: #C1BCCC;
+    /*Tamanho da fonte padrão - 16 px = 100% = 1rem*/
+    font-size: 60%; /* controle das medidas rem */
+}
+#page-login{
+    width: 100vw;
+    height: 100vh;
+    /*Centralizando todos os elemtos*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.banner-genshin{
+    height: 100%;
+    width: 55%;
+    background: url(../../images/image-page-login.jpg) no-repeat;
+    background-size: 100% 100%;
+}
+
+.box-login{
+    height: 100%;
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #F9DEC9;
+}
+
+.form{
+    height: 300px;
+    width: 300px;
+}
+
+#logo-genshin-login{
+    height: 100px;
+    width: 150px;
+}
+.input-block label{
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+    font: 700 1.8rem Archivo;
+    color: #000;
+}
+
+.input-block input{
+    width: 100%;
+    height: 4.6rem;
+    margin-top: 0.8rem;
+    margin-bottom: 0.8rem;
+    border-radius: 0.8rem;
+    background: var(--color-input-background);
+    border: 1px solid var(--color-line-in-white);
+    outline:0; /*Toda vez que seleciona um elemento ele faz um contorno sobre o mesmo, com essa propriedade retira*/
+    padding: 0 1.6rem;
+    font: 1.6rem Archivo;
+}
+
+.input-block{
+    position: relative;
+    border: solid 1px #FFF;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+/*:focus-within - significa que quando um elemento está em foco, ou seja foi clicado, então procure o input-block e então faz a proprioedade after*/
+input-block:focus-within::after{
+    content:""; /*como foi criado o elemento html com o after, todo elemento deve ter um conteúdo*/
+    width: calc(100% - 3.2rem);
+    height: 2px;
+    background: rgb(192, 192, 192, .9);
+
+    position: absolute;
+    left: 1.6rem;
+    bottom: 0px;
+}
+
+.enter-app {
+    width: 100%;
+    height: 4.6rem;
+    background-color: #FB3640;
+    color: var(--color-button-text);
+    border:0;
+    border-radius: .8rem;
+    cursor:pointer;
+    font: 700 2.4rem Archivo;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    transition: background 0.2s;
+    margin-top: 9px;
+    
+}
+.enter-app:hover{
+    background-color:#EE964B;
+}
+
+a #clique-to-register{
+    cursor:pointer;
+    font: 700 1.8rem Archivo;
+    color: red;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+a{
+    text-decoration: none;
+}
