@@ -3,7 +3,7 @@ import React from 'react';
 
 import '../styles/pages/Login.css';
 
-import Logo from '../images/logo-genshin.png';
+import Logo from '../images/logo-genshin-2.png';
 
 
 function Login(){
