@@ -1,4 +1,5 @@
 import express, { request, response } from 'express';
+import reflect from 'reflect-metadata'
 import path from 'path';
 import cors from 'cors';
 
