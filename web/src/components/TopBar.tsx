@@ -11,7 +11,7 @@ function TopBar({
   pageLink?: 'characters' | 'domain';
 }) {
   return (
-    <header className='topBar'>
+    <header className='top-bar'>
       <nav className='wrapper'>
         <a href='/'>
           <img src={logo} alt='Logo' className='logo' />
@@ -21,13 +21,13 @@ function TopBar({
           <div className='links'>
             <a
               href='/characters'
-              className={pageLink == 'characters' ? 'link active' : 'link'}
+              className={pageLink === 'characters' ? 'link active' : 'link'}
             >
               Characters
             </a>
             <a
               href='/domain'
-              className={pageLink == 'domain' ? 'link active' : 'link'}
+              className={pageLink === 'domain' ? 'link active' : 'link'}
             >
               Domain
             </a>

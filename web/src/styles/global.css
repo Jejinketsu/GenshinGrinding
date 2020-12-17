@@ -10,6 +10,9 @@
   --color-green: #299072;
   --color-brown: #bc6a32;
   --color-purple: #a356e2;
+
+  --border-radius: 16px;
+
   font-size: 60%;
 }
 
