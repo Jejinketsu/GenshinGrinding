@@ -21,8 +21,8 @@
 }
 
 body {
-  color: #fff;
-  background-color: #ebf2f5;
+  color: var(--color-foreground-primary);
+  background-color: var(--color-background-primary);
 }
 
 body,

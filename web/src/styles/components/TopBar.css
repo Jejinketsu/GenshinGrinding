@@ -1,0 +1,81 @@
+.topBar {
+  background: var(--color-background-secondary);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.topBar .wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1920px;
+  padding: 8px 16px;
+}
+
+.topBar .wrapper .logo {
+  height: 48px;
+}
+
+.topBar .wrapper .wrapper-left {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.topBar .wrapper .wrapper-left .links {
+  border-right: 1px groove var(--color-foreground-secondary);
+  padding-right: 8px;
+}
+
+.topBar .wrapper .wrapper-left .links .link {
+  color: var(--color-foreground-secondary);
+  display: inline-block;
+  font-size: 1.6rem;
+  font-weight: 700;
+  /* overflow: hidden; */
+  padding: 8px;
+  position: relative;
+  transition: 200ms;
+}
+
+.topBar .wrapper .wrapper-left .links .link:hover {
+  color: var(--color-foreground-primary);
+}
+
+.topBar .wrapper .wrapper-left .links .link.active {
+  color: var(--color-foreground-primary);
+}
+
+.topBar .wrapper .wrapper-left .links .link.active::before {
+  background: var(--color-primary);
+  bottom: -14px;
+  content: '';
+  height: 4px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.topBar .wrapper .wrapper-left .profile-area {
+  align-items: center;
+  background: var(--color-background-primary);
+  border-radius: 60px;
+  display: flex;
+  justify-content: center;
+  margin-left: 16px;
+  padding: 8px;
+}
+
+.topBar .wrapper .wrapper-left .profile-area .nickname {
+  color: var(--color-foreground-primary);
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-right: 16px;
+}
+
+.topBar .wrapper .wrapper-left .profile-area .avatar {
+  height: 40px;
+}

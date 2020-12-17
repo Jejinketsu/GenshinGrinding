@@ -9,14 +9,14 @@
 
 .banner-genshin {
   height: 100%;
-  width: 55%;
-  background: url(../../images/image-page-login-2.webp) no-repeat;
-  background-size: 100% 100%;
+  width: 50%;
+  background: url(../../images/image-page-login-2.webp) no-repeat center;
+  background-size: cover;
 }
 
 .box-login {
   height: 100%;
-  width: 45%;
+  width: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
