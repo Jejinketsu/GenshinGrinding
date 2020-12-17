@@ -1,4 +1,4 @@
-import '../styles/pages/Login.css';
+import '../styles/pages/Form.css';
 
 import logo from '../images/logo-genshin-2.png';
 
@@ -18,13 +18,13 @@ function Login() {
             <label htmlFor=''>Senha</label>
             <input type='password' />
 
-            <button className='enter-app'>Login</button>
+            <button className='enter-app'>Entrar</button>
           </div>
-
-          <a href='/register'>
-            <li id='clique-to-register'>Clique aqui para se cadastrar</li>
-          </a>
         </form>
+
+        <a href='/register'>
+          <li id='clique-to-register'>Clique aqui para se cadastrar</li>
+        </a>
       </div>
     </div>
   );

@@ -1,0 +1,99 @@
+#page-login {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.banner-genshin {
+  height: 100%;
+  width: 50%;
+  background: url(../../images/image-page-login-2.webp) no-repeat center;
+  background-size: cover;
+}
+
+.box-login {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--color-background-primary);
+}
+
+.form {
+  width: 300px;
+}
+
+#logo-genshin-login {
+  height: 100px;
+}
+
+.input-block {
+  position: relative;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.input-block label {
+  display: block;
+  margin-top: 0.8rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--color-foreground-secondary);
+}
+
+.input-block input {
+  width: 100%;
+  height: 4.6rem;
+  margin-top: 0.4rem;
+  margin-bottom: 0.8rem;
+  border-radius: 0.8rem;
+  background: var(--color-foreground-primary);
+  border: 2px solid transparent;
+  outline: none;
+  padding: 0 0.8rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  transition: 200ms;
+  color: var(--color-black);
+}
+
+.input-block input:focus {
+  border-color: var(--color-primary);
+}
+
+.enter-app {
+  width: 100%;
+  height: 4.6rem;
+  background-color: var(--color-primary);
+  color: var(--color-button-text);
+  border: 0;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  font-size: 1.6rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  transition: 200ms;
+  margin-top: 9px;
+}
+
+.enter-app:hover {
+  opacity: 0.8;
+}
+
+a #clique-to-register {
+  cursor: pointer;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
