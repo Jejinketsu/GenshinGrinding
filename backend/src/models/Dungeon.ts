@@ -16,6 +16,6 @@ export default class Dungeon {
     @OneToMany(() => Item, item => item.dungeon, {
         cascade: ['insert', 'update']
     })
-    @JoinColumn({ name: "item_id" })
+    @JoinColumn({ name: 'item_id' })
     item_dungeon: Item;
 }

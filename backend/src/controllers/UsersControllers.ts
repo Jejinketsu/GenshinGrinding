@@ -1,22 +1,29 @@
 import { create } from "domain"
 import { getRepository } from 'typeorm';
 import User from '../models/User';
-import {Request ,Response} from 'express';
+import {Request, Response} from 'express';
+
+
 export default {
     async create(request: Request, response: Response) {
         const {
             username,
             nickname,
-            password
+            password, 
         } = request.body;
+        
         const usersRepository = getRepository(User);
-        const user = usersRepository.create({
+        
+        const image = request.file.filename;
+
+        const data = usersRepository.create({
             username,
             nickname,
-            password
+            password,
+            image
         });
-        await usersRepository.save(user);
+        await usersRepository.save(data);
 
-        return response.status(201).json(user);
+        return response.status(201).json(data);
     }
 }

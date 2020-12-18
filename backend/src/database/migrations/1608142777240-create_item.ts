@@ -30,6 +30,14 @@ export class createItem1608142777240 implements MigrationInterface {
                 {
                     name: 'description',
                     type: 'varchar'
+                },
+                {
+                    name:"quantity",
+                    type:"integer"
+                },
+                {
+                    name:"image",
+                    type:"varchar"
                 }
             ],
         }))

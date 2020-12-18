@@ -106,3 +106,4 @@ dist
 anotacoes.txt
 .eslintcache
 database.sqlite
+/uploads
