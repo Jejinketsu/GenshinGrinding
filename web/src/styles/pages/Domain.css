@@ -1,5 +1,5 @@
 .container {
-  margin: 100px auto;
+  margin: 100px auto 0;
   max-width: 1100px;
   padding: 8px;
   width: 100%;
@@ -8,10 +8,11 @@
 .container .content {
   background: var(--color-background-secondary);
   border-radius: var(--border-radius);
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
   display: grid;
-  gap: 8px;
+  gap: 16px;
   grid-template-columns: repeat(3, 1fr);
-  padding: 8px;
+  padding: 16px;
 }
 
 .container .content .weekdays-card {
@@ -43,27 +44,42 @@
   margin-top: 8px;
 }
 
-.container .content .weekdays-card .domain-card {
+.container .content .weekdays-card .domain-cards .domain-card {
   background: var(--color-background-secondary);
   border-radius: var(--border-radius);
-  min-height: 225px;
+  min-height: 208px;
   padding: 8px;
 }
 
-.container .content .weekdays-card .domain-card .domain-card-title {
+.container
+  .content
+  .weekdays-card
+  .domain-cards
+  .domain-card
+  .domain-card-title {
+  align-items: center;
   color: var(--color-foreground-secondary);
-  display: inline-block;
+  display: flex;
   font-size: 1.4rem;
   height: 32px;
+  justify-content: center;
+  text-align: center;
 }
 
-.container .content .weekdays-card .domain-card .images {
+.container .content .weekdays-card .domain-cards .domain-card .images {
   display: grid;
   gap: 8px;
   grid-template-columns: repeat(2, 1fr);
-  margin-top: 8px;
+  margin-top: 16px;
 }
 
-.container .content .weekdays-card .domain-card .images .domain-card-img {
+.container
+  .content
+  .weekdays-card
+  .domain-cards
+  .domain-card
+  .images
+  .domain-card-img {
+  max-height: 68px;
   max-width: 64px;
 }
