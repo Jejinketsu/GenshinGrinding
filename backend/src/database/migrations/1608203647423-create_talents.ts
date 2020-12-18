@@ -23,6 +23,10 @@ export class createTalents1608203647423 implements MigrationInterface {
                     name: 'level',
                     type: 'integer',
                 },
+                {
+                    name: 'image',
+                    type: 'varchar',
+                },
             ],
         }))
     }

@@ -1,5 +1,4 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, OneToMany, JoinColumn } from 'typeorm';
-import Image from './Image';
 import Character from './Character';
 import Item from './Item';
 
@@ -17,21 +16,18 @@ export default class User {
     @Column()
     password: string;
 
-    @OneToOne(() => Image, image => image.user, {
-        cascade: ['insert', 'update']
-    })
-    @JoinColumn({name:"user_id"})
-    image_user: Image;
+    @Column()
+    image: string;
 
     @OneToMany(() => Character, character => character.user, {
-        cascade: ['insert', 'update']
+        cascade: ['insert', 'update'], nullable:true
     })
-    @JoinColumn({name:"character_id"})
+    @JoinColumn({name:'character_id'})
     character: Character;
 
     @OneToMany(() => Item, item => item.user, {
-        cascade: ['insert', 'update']
+        cascade: ['insert', 'update'], nullable:true
     })
-    @JoinColumn({name:"inventory_id"})
+    @JoinColumn({name:'inventory_id'})
     inventory: Item;
 }

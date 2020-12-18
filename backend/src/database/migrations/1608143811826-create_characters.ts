@@ -28,6 +28,10 @@ export class createCharacters1608143811826 implements MigrationInterface {
                     type: 'varchar'
                 },
                 {
+                    name: 'image',
+                    type: 'varchar'
+                },
+                {
                     name: 'item_leveling_id',
                     type: 'integer'
                 },

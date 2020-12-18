@@ -1,4 +1,4 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import {IsNull, MigrationInterface, QueryRunner, Table} from "typeorm";
 
 export class createUsers1608125900044 implements MigrationInterface {
 
@@ -28,12 +28,18 @@ export class createUsers1608125900044 implements MigrationInterface {
                     type:'varchar'
                 },
                 {
+                    name: 'image',
+                    type: 'varchar'
+                },
+                {
                     name: 'character_id',
-                    type: 'integer'
+                    type: 'integer',
+                    isNullable:true
                 },
                 {
                     name: 'inventory_id',
-                    type: 'integer'
+                    type: 'integer',
+                    isNullable:true
                 }
             ],
             foreignKeys: [
@@ -43,7 +49,7 @@ export class createUsers1608125900044 implements MigrationInterface {
                     referencedTableName: 'characters',
                     referencedColumnNames: ['id'],
                     onUpdate: 'CASCADE', //altera o id de forma automatica
-                    onDelete: 'CASCADE'//Se eu deletar o usuário, deleta a imagem também
+                    onDelete: 'CASCADE',//Se eu deletar o usuário, deleta a imagem tambémz
                 },
                 {
                     name: 'InventoryUser',

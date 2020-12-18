@@ -7,7 +7,7 @@ import uploadConfig from './config/upload';
 const routes = Router();
 const upload = multer(uploadConfig);
 
-routes.post('/users', UsersController.create);
+routes.post('/users', upload.single('image'), UsersController.create);
 
 export default routes;
 

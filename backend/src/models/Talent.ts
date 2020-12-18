@@ -1,5 +1,4 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
-import Image from './Image';
 import Character from './Character';
 
 
@@ -9,23 +8,17 @@ export default class Talent {
     id: number;
 
     @Column()
-    username: string;
+    name: string;
 
     @Column()
-    nickname: string;
-
+    level: number;
+   
     @Column()
-    password: string;
-
-    @OneToOne(() => Image, image => image.talent, {
-        cascade: ['insert', 'update']
-    })
-    @JoinColumn({ name: "talent_id" })
-    image_talent: Image;
+    image: string;
 
     @ManyToOne(() => Character, character => character.talent_character, {
         cascade: ['insert', 'update']
     })
-    @JoinColumn({ name: "talent_id" })
+    @JoinColumn({ name: 'talent_id' })
     character: Character;
 }
