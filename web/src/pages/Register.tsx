@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import '../styles/pages/Form.css';
 
 import logo from '../images/logo-genshin-2.png';
@@ -28,9 +30,9 @@ function Register() {
           </div>
         </form>
 
-        <a href='/'>
+        <Link to='/'>
           <li id='clique-to-register'>Clique aqui para entrar</li>
-        </a>
+        </Link>
       </div>
     </div>
   );
