@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { FaRegUserCircle } from 'react-icons/fa';
 
 import '../styles/components/TopBar.css';
@@ -19,18 +20,18 @@ function TopBar({
 
         <div className='wrapper-left'>
           <div className='links'>
-            <a
-              href='/characters'
+            <Link
+              to='/characters'
               className={pageLink === 'characters' ? 'link active' : 'link'}
             >
               Characters
-            </a>
-            <a
-              href='/domain'
+            </Link>
+            <Link
+              to='/domain'
               className={pageLink === 'domain' ? 'link active' : 'link'}
             >
               Domain
-            </a>
+            </Link>
           </div>
 
           <div className='profile-area'>
