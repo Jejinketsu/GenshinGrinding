@@ -89,26 +89,87 @@ function Domain() {
                       <div className='characters'>
                         <img src={char1} alt='' className='character' />
                         <img src={char2} alt='' className='character' />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className='image-block'>
+                    <img
+                      src={d1weapon21}
+                      alt='Weapon'
+                      className='domain-card-img'
+                    />
+
+                    <div className='item-detail-card'>
+                      <div className='header'>Teachings of "Prosperity"</div>
+                      <div className='info'>
+                        <span className='type'>Talent Level-Up Material</span>
+                        <img src={d1weapon21} alt='' className='image' />
+                        <div className='stars'>
+                          <FaStar size={16} color='#FFD739' />
+                          <FaStar size={16} color='#FFD739' />
+                          <FaStar size={16} color='#FFD739' />
+                        </div>
+                      </div>
+                      <div className='characters'>
+                        <img src={char1} alt='' className='character' />
+                        <img src={char2} alt='' className='character' />
                         <img src={char3} alt='' className='character' />
                       </div>
                     </div>
                   </div>
 
-                  <img
-                    src={d1weapon21}
-                    alt='Weapon'
-                    className='domain-card-img'
-                  />
-                  <img
-                    src={d1weapon31}
-                    alt='Weapon'
-                    className='domain-card-img'
-                  />
-                  <img
-                    src={d1weapon41}
-                    alt='Weapon'
-                    className='domain-card-img'
-                  />
+                  <div className='image-block'>
+                    <img
+                      src={d1weapon31}
+                      alt='Weapon'
+                      className='domain-card-img'
+                    />
+
+                    <div className='item-detail-card'>
+                      <div className='header'>Teachings of "Prosperity"</div>
+                      <div className='info'>
+                        <span className='type'>Talent Level-Up Material</span>
+                        <img src={d1weapon31} alt='' className='image' />
+                        <div className='stars'>
+                          <FaStar size={16} color='#FFD739' />
+                          <FaStar size={16} color='#FFD739' />
+                          <FaStar size={16} color='#FFD739' />
+                        </div>
+                      </div>
+                      <div className='characters'>
+                        <img src={char1} alt='' className='character' />
+                        <img src={char2} alt='' className='character' />
+                        <img src={char3} alt='' className='character' />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className='image-block'>
+                    <img
+                      src={d1weapon41}
+                      alt='Weapon'
+                      className='domain-card-img'
+                    />
+
+                    <div className='item-detail-card'>
+                      <div className='header'>Teachings of "Prosperity"</div>
+                      <div className='info'>
+                        <span className='type'>Talent Level-Up Material</span>
+                        <img src={d1weapon41} alt='' className='image' />
+                        <div className='stars'>
+                          <FaStar size={16} color='#FFD739' />
+                          <FaStar size={16} color='#FFD739' />
+                          <FaStar size={16} color='#FFD739' />
+                        </div>
+                      </div>
+                      <div className='characters'>
+                        <img src={char1} alt='' className='character' />
+                        <img src={char2} alt='' className='character' />
+                        <img src={char3} alt='' className='character' />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </section>
 
