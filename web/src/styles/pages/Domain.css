@@ -107,10 +107,12 @@
   border-radius: var(--border-radius);
   color: var(--color-foreground-primary);
   bottom: 80px;
-  display: none;
   left: -50%;
   position: absolute;
+  transform: scale(0) translateY(-50%);
+  transition: 100ms;
   width: 250px;
+  z-index: 10;
 }
 
 .container
@@ -121,7 +123,7 @@
   .images
   .image-block:hover
   > .item-detail-card {
-  display: block;
+  transform: scale(1) translateY(0%);
 }
 
 .container
