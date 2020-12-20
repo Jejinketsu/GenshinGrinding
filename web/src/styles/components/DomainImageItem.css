@@ -1,0 +1,151 @@
+.container
+  .content
+  .weekdays-card
+  .domain-cards
+  .domain-card
+  .images
+  .image-block {
+  cursor: help;
+  position: relative;
+}
+
+.container
+  .content
+  .weekdays-card
+  .domain-cards
+  .domain-card
+  .images
+  .domain-card-img {
+  max-height: 68px;
+  max-width: 64px;
+}
+
+.container
+  .content
+  .weekdays-card
+  .domain-cards
+  .domain-card
+  .images
+  .image-block
+  .item-detail-card {
+  background: var(--color-green);
+  border-radius: var(--border-radius);
+  color: var(--color-foreground-primary);
+  bottom: 80px;
+  left: -50%;
+  position: absolute;
+  transform: scale(0) translateY(-50%);
+  transition: 100ms;
+  width: 250px;
+  z-index: 10;
+}
+
+.container
+  .content
+  .weekdays-card
+  .domain-cards
+  .domain-card
+  .images
+  .image-block:hover
+  > .item-detail-card {
+  transform: scale(1) translateY(0%);
+}
+
+.container
+  .content
+  .weekdays-card
+  .domain-cards
+  .domain-card
+  .images
+  .image-block
+  .item-detail-card
+  .header {
+  font-size: 1.6rem;
+  font-weight: 700;
+  padding: 8px;
+  text-align: center;
+}
+
+.container
+  .content
+  .weekdays-card
+  .domain-cards
+  .domain-card
+  .images
+  .image-block
+  .item-detail-card
+  .info {
+  background: linear-gradient(
+    45deg,
+    var(--color-background-primary),
+    transparent
+  );
+  display: flex;
+  flex-direction: column;
+}
+
+.container
+  .content
+  .weekdays-card
+  .domain-cards
+  .domain-card
+  .images
+  .image-block
+  .item-detail-card
+  .info
+  .type {
+  font-size: 1.4rem;
+  font-weight: 700;
+  padding: 8px;
+}
+
+.container
+  .content
+  .weekdays-card
+  .domain-cards
+  .domain-card
+  .images
+  .image-block
+  .item-detail-card
+  .image {
+  align-self: flex-end;
+  margin: 0 8px;
+  width: 80px;
+}
+
+.container
+  .content
+  .weekdays-card
+  .domain-cards
+  .domain-card
+  .images
+  .image-block
+  .item-detail-card
+  .stars {
+  padding: 0 8px 8px;
+}
+
+.container
+  .content
+  .weekdays-card
+  .domain-cards
+  .domain-card
+  .images
+  .image-block
+  .item-detail-card
+  .characters {
+  padding: 0 16px;
+}
+
+.container
+  .content
+  .weekdays-card
+  .domain-cards
+  .domain-card
+  .images
+  .image-block
+  .item-detail-card
+  .characters
+  .character {
+  transform: translateY(3px);
+}
