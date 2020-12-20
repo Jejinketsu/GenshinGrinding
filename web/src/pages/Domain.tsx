@@ -1,6 +1,5 @@
-import { FaStar } from 'react-icons/fa';
-
 import TopBar from '../components/TopBar';
+import DomainImageItem from '../components/DomainImageItem';
 
 import '../styles/pages/Domain.css';
 
@@ -69,107 +68,34 @@ function Domain() {
               <section className='domain-card'>
                 <h4 className='domain-card-title'>Cecilia Garden</h4>
                 <div className='images'>
-                  <div className='image-block'>
-                    <img
-                      src={d1weapon11}
-                      alt='Weapon'
-                      className='domain-card-img'
-                    />
-
-                    <div className='item-detail-card'>
-                      <div className='header'>Teachings of "Prosperity"</div>
-                      <div className='info'>
-                        <span className='type'>Talent Level-Up Material</span>
-                        <img src={d1weapon11} alt='' className='image' />
-                        <div className='stars'>
-                          <FaStar size={16} color='#FFD739' />
-                          <FaStar size={16} color='#FFD739' />
-                        </div>
-                      </div>
-                      <div className='characters'>
-                        <img src={char1} alt='' className='character' />
-                        <img src={char2} alt='' className='character' />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className='image-block'>
-                    <img
-                      src={d1weapon21}
-                      alt='Weapon'
-                      className='domain-card-img'
-                    />
-
-                    <div className='item-detail-card'>
-                      <div className='header'>Teachings of "Prosperity"</div>
-                      <div className='info'>
-                        <span className='type'>Talent Level-Up Material</span>
-                        <img src={d1weapon21} alt='' className='image' />
-                        <div className='stars'>
-                          <FaStar size={16} color='#FFD739' />
-                          <FaStar size={16} color='#FFD739' />
-                          <FaStar size={16} color='#FFD739' />
-                        </div>
-                      </div>
-                      <div className='characters'>
-                        <img src={char1} alt='' className='character' />
-                        <img src={char2} alt='' className='character' />
-                        <img src={char3} alt='' className='character' />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className='image-block'>
-                    <img
-                      src={d1weapon31}
-                      alt='Weapon'
-                      className='domain-card-img'
-                    />
-
-                    <div className='item-detail-card'>
-                      <div className='header'>Teachings of "Prosperity"</div>
-                      <div className='info'>
-                        <span className='type'>Talent Level-Up Material</span>
-                        <img src={d1weapon31} alt='' className='image' />
-                        <div className='stars'>
-                          <FaStar size={16} color='#FFD739' />
-                          <FaStar size={16} color='#FFD739' />
-                          <FaStar size={16} color='#FFD739' />
-                        </div>
-                      </div>
-                      <div className='characters'>
-                        <img src={char1} alt='' className='character' />
-                        <img src={char2} alt='' className='character' />
-                        <img src={char3} alt='' className='character' />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className='image-block'>
-                    <img
-                      src={d1weapon41}
-                      alt='Weapon'
-                      className='domain-card-img'
-                    />
-
-                    <div className='item-detail-card'>
-                      <div className='header'>Teachings of "Prosperity"</div>
-                      <div className='info'>
-                        <span className='type'>Talent Level-Up Material</span>
-                        <img src={d1weapon41} alt='' className='image' />
-                        <div className='stars'>
-                          <FaStar size={16} color='#FFD739' />
-                          <FaStar size={16} color='#FFD739' />
-                          <FaStar size={16} color='#FFD739' />
-                        </div>
-                      </div>
-                      <div className='characters'>
-                        <img src={char1} alt='' className='character' />
-                        <img src={char2} alt='' className='character' />
-                        <img src={char3} alt='' className='character' />
-                      </div>
-                    </div>
-                  </div>
+                  <DomainImageItem
+                    itemImageSource={d1weapon11}
+                    detailCardHeader='Teachings of "Prosperity"'
+                    detailCardType='Talent Level-Up Material'
+                    starsAmount={2}
+                    charactersImagesSource={[char1, char2]}
+                  />
+                  <DomainImageItem
+                    itemImageSource={d1weapon21}
+                    detailCardHeader='Teachings of "Prosperity"'
+                    detailCardType='Talent Level-Up Material'
+                    starsAmount={2}
+                    charactersImagesSource={[char1, char2]}
+                  />
+                  <DomainImageItem
+                    itemImageSource={d1weapon31}
+                    detailCardHeader='Teachings of "Prosperity"'
+                    detailCardType='Talent Level-Up Material'
+                    starsAmount={3}
+                    charactersImagesSource={[char1, char2, char3]}
+                  />
+                  <DomainImageItem
+                    itemImageSource={d1weapon41}
+                    detailCardHeader='Teachings of "Prosperity"'
+                    detailCardType='Talent Level-Up Material'
+                    starsAmount={4}
+                    charactersImagesSource={[char1, char2]}
+                  />
                 </div>
               </section>
 
