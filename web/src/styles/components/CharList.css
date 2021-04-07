@@ -1,0 +1,41 @@
+.character_box {
+    background: var(--color-background-secondary);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.section_title {
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+.char_wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.bottom_info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.level_badge {
+    background: var(--color-background-tertiary);
+    border-radius: 15px;
+    padding: 1px 10px;
+}
+
+.char_level,
+.char_name {
+    font-size: 20px;
+    color: #999;
+}
