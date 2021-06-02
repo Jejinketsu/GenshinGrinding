@@ -1,14 +1,16 @@
 import { Router } from 'express';
 import UsersController from './controllers/UsersControllers';
-import multer from 'multer';
-import uploadConfig from './config/upload';
-
+// import multer from 'multer';
+// import uploadConfig from './config/upload';
 
 const routes = Router();
-const upload = multer(uploadConfig);
+// const upload = multer(uploadConfig);
 
 routes.post('/signup', UsersController.create);
 routes.get('/login', UsersController.login);
+
+// routes.post('/users', upload.single('image'), UsersController.create);
+
 
 export default routes;
 

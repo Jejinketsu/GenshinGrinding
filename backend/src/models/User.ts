@@ -1,33 +1,35 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, OneToMany, JoinColumn } from 'typeorm';
-import Character from './Character';
-import Item from './Item';
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import Character from './Character'
+import UserToItem from './UserToItem';
 
-@Entity("users")
+@Entity()
 export default class User {
-    @PrimaryGeneratedColumn('increment')
-    id: number;
-    
-    @Column()
-    username: string;
+
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
     
     @Column()
     nickname: string;
-    
+
+    @Column({
+        unique: true,
+    })
+    username: string;
+
     @Column()
     password: string;
 
     @Column()
-    image: string;
+    role: string;
 
-    @OneToMany(() => Character, character => character.user, {
-        cascade: ['insert', 'update'], nullable:true
-    })
-    @JoinColumn({name:'character_id'})
-    character: Character;
+    @Column()
+    image_path: string;
 
-    @OneToMany(() => Item, item => item.user, {
-        cascade: ['insert', 'update'], nullable:true
-    })
-    @JoinColumn({name:'inventory_id'})
-    inventory: Item;
+    @ManyToMany(() => Character)
+    @JoinTable()
+    characters: Character[];
+
+    @OneToMany(() => UserToItem, userToItem => userToItem.user)
+    inventory: UserToItem[];
+
 }
