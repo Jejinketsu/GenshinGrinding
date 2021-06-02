@@ -7,7 +7,12 @@ import uploadConfig from './config/upload';
 const routes = Router();
 const upload = multer(uploadConfig);
 
+<<<<<<< Updated upstream
 routes.post('/users', upload.single('image'), UsersController.create);
+=======
+routes.post('/signup', UsersController.create);
+routes.get('/login', UsersController.login);
+>>>>>>> Stashed changes
 
 export default routes;
 

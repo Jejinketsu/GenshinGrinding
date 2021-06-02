@@ -1,6 +1,8 @@
-import express, { request, response } from 'express';
-import reflect from 'reflect-metadata'
-import path from 'path';
+if(process.env.NODE_ENV !== 'production')
+    require('dotenv').config();
+
+import reflect from 'reflect-metadata';
+import express from 'express';
 import cors from 'cors';
 
 import './database/connection'; //Pra fazer a conexão com o database
@@ -14,4 +16,4 @@ app.use(routes); //Colocando a nossa aplicação pra usar as rotas que está no 
 //app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')))
 
 
-app.listen(3333);
+app.listen(3333, () => {console.log('Server listening...')});
