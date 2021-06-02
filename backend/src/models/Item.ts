@@ -1,11 +1,10 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, ManyToOne, JoinColumn} from 'typeorm';
-import User from './User';
-import Dungeon from './Dungeon';
-import Character from './Character';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import DungeonToItem from './DungeonToItem';
+import UserToItem from './UserToItem';
 
-
-@Entity("itens")
+@Entity()
 export default class Item {
+
     @PrimaryGeneratedColumn('increment')
     id: number;
 
@@ -17,37 +16,16 @@ export default class Item {
 
     @Column()
     rarity: number;
-    
-    @Column()
-    description:string;
-   
-    @Column()
-    quantity:number;
-    
-    @Column()
-    image:string;
 
-    @ManyToOne(() => User, user => user.inventory, {
-        cascade: ['insert', 'update'], nullable:true
-    })
-    @JoinColumn({ name: 'inventory_id' })
-    user: User;
-    
-    @ManyToOne(() => Dungeon, dungeon => dungeon.item_dungeon, {
-        cascade: ['insert', 'update']
-    })
-    @JoinColumn({ name: 'item_id' })
-    dungeon: Dungeon;
+    @Column()
+    description: string;
 
-    @ManyToOne(() => Character, character => character.item, {
-        cascade: ['insert', 'update']
-    })
-    @JoinColumn({ name: 'xp_id' })
-    xp_character: Character;
+    @Column()
+    image_path: string;
 
-    @ManyToOne(() => Character, character => character.item_leveling, {
-        cascade: ['insert', 'update']
-    })
-    @JoinColumn({ name: 'item_leveling_id' })
-    item_leveling_character: Character;
+    @OneToMany(() => DungeonToItem, dungeonToItem => dungeonToItem.item)
+    dungeonToItem: DungeonToItem[];
+
+    @OneToMany(() => UserToItem, userToItem => userToItem.item)
+    userToItem: UserToItem[];
 }
