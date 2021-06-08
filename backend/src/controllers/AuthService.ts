@@ -28,4 +28,18 @@ export default {
         }
     },
 
+    authRole(roles: string | string[]) {
+        if(roles === 'string'){
+            roles = [roles];
+        }
+
+        return (request: Request, response: Response, next: NextFunction) => {
+
+            if(roles.length && !roles.includes(request.body.user?.role)){
+                return response.status(401).json({ message: 'Unauthorized' });
+            }
+
+            next();
+        }
+    }
 }

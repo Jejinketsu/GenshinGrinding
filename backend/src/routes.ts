@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import Role from './config/roles';
 import UsersController from './controllers/UsersControllers';
 import AuthService from './controllers/AuthService';
 // import multer from 'multer';
