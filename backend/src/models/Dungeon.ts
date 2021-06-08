@@ -10,6 +10,12 @@ export default class Dungeon {
     @Column()
     name: string;
 
+    @Column()
+    location: string;
+
+    @Column()
+    type: string;
+
     @OneToMany(() => DungeonToItem, dungeonToItem => dungeonToItem.dungeon)
     dungeonToItem: DungeonToItem[];
 }
