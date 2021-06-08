@@ -65,7 +65,31 @@ export default {
 
         } catch(error){
             console.log("user login error >>: ", error.message);
-            return response.status(404);
+            return response.send(404);
+        }
+    },
+
+    async update(request: Request, response: Response) {
+        try {
+            const {
+                username,
+                nickname
+            } = request.body;
+
+            const usersRepository = getRepository(User);
+            const user = await usersRepository.findOne({ username })
+
+            if(!user) throw {name: 'updateException', message: 'user not find'}
+
+            user.nickname = nickname;
+
+            await usersRepository.save(user);
+
+            return response.sendStatus(200);
+
+        } catch(error) {
+            console.log("user login error >>: ", error.message);
+            return response.send(404);
         }
     }
 }
