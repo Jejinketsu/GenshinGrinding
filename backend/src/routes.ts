@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import UsersController from './controllers/UsersControllers';
+import AuthService from './controllers/AuthService';
 // import multer from 'multer';
 // import uploadConfig from './config/upload';
 
@@ -8,6 +9,7 @@ const routes = Router();
 
 routes.post('/signup', UsersController.create);
 routes.get('/login', UsersController.login);
+routes.put('/profile_update', AuthService.authorize, UsersController.update);
 
 // routes.post('/users', upload.single('image'), UsersController.create);
 
