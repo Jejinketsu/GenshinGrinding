@@ -1,7 +1,7 @@
 import { getRepository } from 'typeorm';
 import jwt from 'jsonwebtoken';
 import User from '../models/User';
-import { Request, Response, NextFunction, request } from 'express';
+import { Request, Response, NextFunction } from 'express';
 
 export default {
     async authorize(request: Request, response: Response, next: NextFunction){

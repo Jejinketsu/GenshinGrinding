@@ -2,13 +2,13 @@ import { Router } from 'express';
 import Role from './config/roles';
 import UsersController from './controllers/UsersControllers';
 import AuthService from './controllers/AuthService';
-// import multer from 'multer';
-// import uploadConfig from './config/upload';
+import multer from 'multer';
+import uploadConfig from './config/upload';
 
 const routes = Router();
-// const upload = multer(uploadConfig);
+const upload = multer(uploadConfig);
 
-routes.post('/signup', UsersController.create);
+routes.post('/signup', upload.single('file'), UsersController.create);
 routes.get('/login', UsersController.login);
 routes.put('/profile_update', AuthService.authorize, UsersController.update);
 

@@ -3,25 +3,42 @@ import jwt from 'jsonwebtoken';
 import User from '../models/User';
 import bcrypt from 'bcrypt';
 import {Request ,Response} from 'express';
+import S3 from '../services/S3_service';
 
 export default {
     async create(request: Request, response: Response) {
+
         try{
             const {
                 username,
                 nickname,
                 password,
             } = request.body;
+
+            const usersRepository = getRepository(User);
+            const already_user = await usersRepository.findOne({
+                username: username
+            });
+
+            if(already_user) throw {name: 'userExcpetion', message: 'username already exists'}
+
+            const avatar_info = {
+                entity: 'user',
+                id: username,
+                type: 'avatar',
+                mime: request.file.mimetype
+            };
+
+            const filepath = await S3.uploadFile(request.file.path, avatar_info);
             
             const encrypted_password = bcrypt.hashSync(password, 12);
             
-            const usersRepository = getRepository(User);
             const user = usersRepository.create({
                 username,
                 nickname,
                 password: encrypted_password,
                 role: 'user',
-                image_path: '/'
+                image_path: '' + filepath
             });
             
             await usersRepository.save(user);
