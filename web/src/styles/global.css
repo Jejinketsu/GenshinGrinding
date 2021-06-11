@@ -27,6 +27,7 @@
 body {
   color: var(--color-foreground-primary);
   background-color: var(--color-background-primary);
+  width: 100%;
 }
 
 body,
@@ -39,4 +40,8 @@ button {
 
 a {
   text-decoration: none;
+}
+
+.wrapper{
+  width: 100%;
 }

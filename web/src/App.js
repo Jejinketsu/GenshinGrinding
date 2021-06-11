@@ -1,9 +1,10 @@
-import Routes from './routes';
-
+import Routas from "./Routas";
 import './styles/global.css';
 
 function App() {
-  return <Routes />;
+  return (
+    <Routas />
+  );
 }
 
 export default App;

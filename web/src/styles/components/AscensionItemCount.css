@@ -1,0 +1,26 @@
+.item-ascension-box {
+  width: 40%;
+  height: 40%;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.item-ascension-count{
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+}
+.item-ascension-count img {
+  width: auto;
+  height: auto;
+}
+
+.item-count{
+  font-size: 2rem;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}

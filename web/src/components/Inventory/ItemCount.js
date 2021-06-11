@@ -1,13 +1,12 @@
 import React from "react";
-import ItemImage from "../images/Item_Cor_Lapis.png";
-import "../styles/components/ItemCount.css";
-import { ReactComponent as TrashItem } from "../images/trash-solid.svg";
+import ItemImage from "../../images/Item_Cor_Lapis.png";
+import "../../styles/components/ItemCount.css";
+import { ReactComponent as TrashItem } from "../../images/trash-solid.svg";
 
 const ItemCount = () => {
-  const [count, setCount] = React.useState<number>(0);
+  const [count, setCount] = React.useState(0);
 
-
-  function handleChange({ target }: { target: any }) {
+  function handleChange({ target }) {
     setCount(target.value);
   }
 
