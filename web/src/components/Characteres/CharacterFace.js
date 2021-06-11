@@ -4,6 +4,7 @@ import Edit_char from "../../images/Edit_char.png";
 import "../../styles/components/CharacterFace.css";
 
 const CharacterFace = () => {
+  
   React.useEffect(() => {
     const name = document.querySelector(".name");
     const size = name.textContent?.split("").length;
