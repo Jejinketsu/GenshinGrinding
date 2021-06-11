@@ -1,0 +1,76 @@
+.character_ascension_status {
+  width: 95%;
+  height: 20rem;
+  background: var(--color-background-primary);
+  margin: 2.5rem auto;
+  border-radius: 5px;
+  display: flex;
+  padding: 10px 0;
+}
+
+.character-ascension {
+  border-right: 2px solid rgba(255, 255, 255, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0.6;
+}
+
+.character-ascension p {
+  margin-top: -10px;
+}
+
+.face {
+  flex: 2;
+}
+.ascension,
+.talents {
+  flex: 5;
+}
+.level {
+  flex: 1.5;
+}
+
+.character-ascension .area {
+  width: 95%;
+  height: 100%;
+  display: flex;
+}
+
+.area .elemental-stone{
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+.area .others-itens{
+  flex: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+
+.area .crown{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100%;
+  padding: 8% 0;
+}
+
+.area .talens-ascension{
+  flex: 3.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100%;
+}
