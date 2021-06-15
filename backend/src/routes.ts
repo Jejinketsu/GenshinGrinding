@@ -1,7 +1,4 @@
 import { Router } from 'express';
-import Role from './config/roles';
-import UsersController from './controllers/UsersControllers';
-import AuthService from './controllers/AuthService';
 import multer from 'multer';
 import Role from './config/roles';
 import uploadConfig from './config/upload';
@@ -21,6 +18,8 @@ routes.get('/get_itens', AuthService.authorize, AuthService.authRole([Role.Admin
     ItemController.getAll);
 routes.put('/update_item', AuthService.authorize, AuthService.authRole([Role.Admin, Role.Super]),
     upload.single('file'), ItemController.update);
+routes.delete('/delete_item', AuthService.authorize, AuthService.authRole([Role.Admin, Role.Super]),
+    ItemController.delete);
 
 // routes.post('/users', upload.single('image'), UsersController.create);
 

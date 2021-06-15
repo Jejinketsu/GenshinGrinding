@@ -108,6 +108,16 @@ export default {
         }
     },
 
+    async delete(request: Request, response: Response){
+        try {
+            const { id, name } = request.body;
+
+            const itemRepository = getRepository(Item);
+            await itemRepository.delete(id);
+
+            const params = {
+                entity: 'item',
+                id: id,
                 type: 'avatar',
                 mime: ''
             }
