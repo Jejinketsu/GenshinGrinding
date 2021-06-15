@@ -1,22 +1,21 @@
-import { throws } from 'assert/strict';
 import S3 from 'aws-sdk/clients/s3';
 import fs from 'fs';
 import Fileinfo from '../interfaces/fileinfo';
-import ParamsFormat from '../interfaces/S3UploadParams';
+import UploadParams from '../interfaces/S3UploadParams';
 
 const service = new S3({
  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
 });
 
-const uploadS3 = (params: ParamsFormat) => new Promise((resolve, reject) => {
+const uploadS3 = (params: UploadParams) => new Promise((resolve, reject) => {
     service.upload(params, function(s3Err: Error, data: S3.ManagedUpload.SendData) {
         if(s3Err) reject(s3Err);
         else {
             resolve(data.Location);
         }
     });
-})
+});
 
 export default {
     async uploadFile(filename: fs.PathLike, fileinfo: Fileinfo){
@@ -34,5 +33,16 @@ export default {
         fs.unlink(filename, (err) => {if(err) throw err});
 
         return path;
-    }
+    },
+
+    async deleteFile(fileinfo: Fileinfo){
+        const params = {
+            Bucket: <string> process.env.BUCKET,
+            Key: `${fileinfo.entity}/${fileinfo.id}/${fileinfo.type}`
+        }
+
+        service.deleteObject(params, function(s3err: Error, data) {
+            if(s3err) throw s3err;
+        });
+    },
 }
