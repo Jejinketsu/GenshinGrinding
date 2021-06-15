@@ -96,6 +96,18 @@ export default {
         }
     },
 
+    async getAll(request: Request, response: Response){
+        try {
+            const itemRepository = getRepository(Item);
+            const itens = await itemRepository.find({});
+
+            return response.status(200).json(itens);
+        } catch(error) {
+            console.log("item list error >>: ", error.message);
+            return response.sendStatus(404);
+        }
+    },
+
                 type: 'avatar',
                 mime: ''
             }

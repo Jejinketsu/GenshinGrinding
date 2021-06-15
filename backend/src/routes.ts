@@ -17,6 +17,8 @@ routes.get('/login', UsersController.login);
 routes.put('/profile_update', AuthService.authorize, UsersController.update);
 routes.post('/create_item', AuthService.authorize, AuthService.authRole([Role.Admin, Role.Super]), 
     upload.single('file'), ItemController.create);
+routes.get('/get_itens', AuthService.authorize, AuthService.authRole([Role.Admin, Role.Super]),
+    ItemController.getAll);
 routes.put('/update_item', AuthService.authorize, AuthService.authRole([Role.Admin, Role.Super]),
     upload.single('file'), ItemController.update);
 
