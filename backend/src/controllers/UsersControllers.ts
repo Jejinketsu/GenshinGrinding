@@ -14,7 +14,7 @@ export default {
                 nickname,
                 password,
             } = request.body;
-
+            
             const usersRepository = getRepository(User);
             const already_user = await usersRepository.findOne({
                 username: username
@@ -22,15 +22,17 @@ export default {
 
             if(already_user) throw {name: 'userExcpetion', message: 'username already exists'}
 
-            const avatar_info = {
-                entity: 'user',
-                id: username,
-                type: 'avatar',
-                mime: request.file.mimetype
-            };
+            let filepath;
+            if(request.file){
+                const avatar_info = {
+                    entity: 'user',
+                    id: username,
+                    type: 'avatar',
+                    mime: request.file.mimetype
+                };
 
-            const filepath = await S3.uploadFile(request.file.path, avatar_info);
-            
+                filepath = await S3.uploadFile(request.file.path, avatar_info);
+            }
             const encrypted_password = bcrypt.hashSync(password, 12);
             
             const user = usersRepository.create({
@@ -38,7 +40,7 @@ export default {
                 nickname,
                 password: encrypted_password,
                 role: 'user',
-                image_path: '' + filepath
+                image_path: <string> filepath,
             });
             
             await usersRepository.save(user);
@@ -78,7 +80,9 @@ export default {
                 expiresIn: 86400,
             });
 
-            return response.json({user: user, token: token});
+            const { password: omitted, ...rest} = user;
+
+            return response.json({user: rest, token: token});
 
         } catch(error){
             console.log("user login error >>: ", error.message);
