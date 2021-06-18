@@ -5,15 +5,29 @@
   margin: 2.5rem auto;
   border-radius: 5px;
   display: flex;
+}
+
+.character_ascension_status .padding-area{
   padding: 10px 0;
+  flex: 10;
+  display: flex;
+}
+
+.character_ascension_status .navigation-buttons{
+  flex: 1;
+  display: flex;
 }
 
 .character-ascension {
-  border-right: 2px solid rgba(255, 255, 255, 0.6);
+  border-left: 2px solid rgba(255, 255, 255, 0.6);
   display: flex;
   flex-direction: column;
   align-items: center;
   flex: 0.6;
+}
+
+.character-ascension:nth-child(1){
+  border-left: none;
 }
 
 .character-ascension p {
@@ -69,8 +83,80 @@
 .area .talens-ascension{
   flex: 3.5;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   height: 100%;
+}
+
+.area .talens-ascension .world-itens{
+  width: 100%;
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+
+.level-itens{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;  
+}
+
+
+.character-ascension.percentual{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.percentual p{
+  margin-top: 10px;
+}
+.percentual span{
+  margin-bottom: 2px;
+}
+
+.navigation-buttons .delete{
+  border: none;
+  flex: 1;
+}
+
+.navigation-buttons .priority{
+  border: none;
+  flex: 1;
+}
+
+.navigation-buttons .delete button,
+.navigation-buttons .priority button{
+  width: 100%;
+  height: 100%;
+  background: var(--color-background-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.delete button{
+  border: 1px solid rgb(160, 0, 0);
+}
+
+.priority button{
+  border: 1px solid rgb(0, 30, 112);
+}
+
+.navigation-buttons button img{
+  width: 90%;
+}
+
+.button-up{
+  border-radius: 0 5px 0 0;
+}
+
+.button-down{
+  border-radius: 0 0 5px 0;
 }

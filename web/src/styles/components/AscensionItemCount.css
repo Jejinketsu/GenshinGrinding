@@ -22,6 +22,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 30%;
 }
 
 .crown .item-ascension-count{
@@ -30,6 +31,8 @@
 }
 
 .item-ascension-count img {
+  max-width: 100%;
+  min-height: 100%;
   width: auto;
   height: auto;
 }
