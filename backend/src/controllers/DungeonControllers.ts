@@ -91,4 +91,17 @@ export default {
         }
     },
 
+    async delete(request: Request, response: Response){
+        try {
+            const { id } = request.body;
+
+            const dungeonRepository = getRepository(Dungeon);
+            await dungeonRepository.delete({id});
+
+            return response.sendStatus(200);
+        } catch(error) {
+            console.log('delete dungeon error >>', error.message);
+            return response.sendStatus(404);
+        }
+    }
 }

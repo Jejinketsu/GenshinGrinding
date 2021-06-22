@@ -17,10 +17,16 @@ export default class DungeonToItem {
     @Column()
     public day!: string;
 
-    @ManyToOne(() => Dungeon, dungeon => dungeon.dungeonToItem)
+    @ManyToOne(() => Dungeon, dungeon => dungeon.dungeonToItem, {
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    })
     public dungeon!: Dungeon;
 
-    @ManyToOne(() => Item, item => item.dungeonToItem)
+    @ManyToOne(() => Item, item => item.dungeonToItem, {
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    })
     public item!: Item;
 
 }

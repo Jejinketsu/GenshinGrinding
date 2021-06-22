@@ -30,6 +30,9 @@ routes.post('/create_dungeon', AuthService.authorize, AuthService.authRole([Role
     DungeonControllers.create);
 routes.get('/get_dungeons', AuthService.authorize, AuthService.authRole([Role.Admin, Role.Super]),
     DungeonControllers.getAll);
+routes.delete('/delete_dungeon', AuthService.authorize, AuthService.authRole([Role.Admin, Role.Super]),
+    DungeonControllers.delete);
+
 
 
 export default routes;
