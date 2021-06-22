@@ -6,6 +6,7 @@ import AuthService from './controllers/AuthService';
 import UsersController from './controllers/UsersControllers';
 import ItemController from './controllers/ItemControllers';
 import DungeonControllers from './controllers/DungeonControllers';
+import CharacterControllers from './controllers/CharacterControllers';
 
 const routes = Router();
 const upload = multer(uploadConfig);
@@ -33,6 +34,12 @@ routes.get('/get_dungeons', AuthService.authorize, AuthService.authRole([Role.Ad
 routes.delete('/delete_dungeon', AuthService.authorize, AuthService.authRole([Role.Admin, Role.Super]),
     DungeonControllers.delete);
 
+// Character
+routes.post('/create_character', AuthService.authorize, AuthService.authRole([Role.Admin, Role.Super]),
+    upload.fields([
+        {name: 'character_card', maxCount: 1},
+        {name: 'character_portrait', maxCount: 1},
+    ]), CharacterControllers.create);
 
 
 export default routes;

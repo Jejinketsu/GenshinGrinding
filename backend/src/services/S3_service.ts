@@ -8,7 +8,7 @@ const service = new S3({
  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
 });
 
-const uploadS3 = (params: UploadParams) => new Promise((resolve, reject) => {
+const uploadS3 = (params: UploadParams): Promise<string> => new Promise((resolve, reject) => {
     service.upload(params, function(s3Err: Error, data: S3.ManagedUpload.SendData) {
         if(s3Err) reject(s3Err);
         else {
