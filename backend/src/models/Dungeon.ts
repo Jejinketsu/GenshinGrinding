@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinTable, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import DungeonToItem from './DungeonToItem';
 
 @Entity()
@@ -17,5 +17,6 @@ export default class Dungeon {
     type: string;
 
     @OneToMany(() => DungeonToItem, dungeonToItem => dungeonToItem.dungeon)
+    @JoinTable()
     dungeonToItem: DungeonToItem[];
 }
