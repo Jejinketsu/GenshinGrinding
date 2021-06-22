@@ -5,9 +5,9 @@ import { Request, Response, NextFunction } from 'express';
 
 export default {
     async authorize(request: Request, response: Response, next: NextFunction){
-        const [, token]: String[] | any = request.headers.authorization?.split(" ");
         
         try {
+            const [, token]: String[] | any = request.headers.authorization?.split(" ");
             const payload = jwt.verify(token, <string> process.env.SECRET);
             
             const usersRepository = getRepository(User);
@@ -24,7 +24,7 @@ export default {
 
         } catch(error) {
             console.log("user login error >>: ", error.message);
-            return response.send(404);
+            return response.sendStatus(404);
         }
     },
 
