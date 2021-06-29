@@ -28,18 +28,18 @@
 .crown .item-ascension-count{
  width: 100%;
  flex: 5;
+ /* background-color: rosybrown; */
 }
 
 .item-ascension-count img {
   max-width: 100%;
-  min-height: 100%;
   width: auto;
   height: auto;
 }
 
-.crown img{
+/* .crown img{
   width: 100%;
-}
+} */
 
 .item-count{
   font-size: 2rem;

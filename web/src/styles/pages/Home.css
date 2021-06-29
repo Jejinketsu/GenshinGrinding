@@ -1,0 +1,87 @@
+p {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+/* DESCRIÇÃO */
+
+.description {
+  width: 80%;
+  margin: 0 auto 50px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.caracterImg {
+  width: 30%;
+}
+
+.caracterImg img {
+  max-width: 400px;
+  min-width: 100px;
+}
+
+.amber {
+  position: relative;
+  right: 10%;
+}
+
+.description p {
+  width: 60%;
+  font-size: 4em;
+}
+
+.right {
+  text-align: right;
+}
+.left {
+  text-align: left;
+}
+
+/* EXEMPLOS */
+.examples {
+  width: 80%;
+  margin: 5em auto;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 3em;
+}
+
+.examplesImages {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.examplesImages img {
+  width: 48%;
+}
+
+/* ABOUT US */
+.about {
+  width: 80%;
+  margin: 5em auto;
+  text-align: center;
+  font-size: 2em;
+}
+
+.AboutUs {
+  font-size: 2.5em;
+}
+
+.developers {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 2em 0px;
+}
+
+.developers img {
+  width: 100%;
+}

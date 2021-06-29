@@ -1,0 +1,21 @@
+.add_character {
+  width: 95%;
+  height: 20rem;
+  background: var(--color-background-primary);
+  margin: 2.5rem auto;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add_character button{
+    height: 42%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.add_character button img{
+    width: 100%;
+}
