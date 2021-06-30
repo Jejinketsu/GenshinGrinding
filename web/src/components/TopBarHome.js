@@ -4,7 +4,12 @@ import "../styles/components/TopBar.css";
 import logo from "../images/logo-genshin-2.png";
 
 const TopBarHome = ({ pageLink }) => {
- 
+  
+  function handleClick(event) {
+    event.preventDefault();
+    document.querySelector("#about").scrollIntoView({ behavior: "smooth" });
+  }
+
   return (
     <header className="top-bar">
       <nav className="wrapper">
@@ -20,12 +25,14 @@ const TopBarHome = ({ pageLink }) => {
             >
               Home
             </Link>
-            <Link
-              to="/"
+
+            <a
+              href="#about"
+              onClick={handleClick}
               className={pageLink === "about" ? "link active" : "link"}
             >
               About Us
-            </Link>
+            </a>
           </div>
 
           <div className="profile-area">

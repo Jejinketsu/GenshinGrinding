@@ -10,6 +10,7 @@ import lucas from "../images/home_images/lucas.png";
 import TopBarHome from "../components/TopBarHome";
 
 const Home = () => {
+
   return (
     <section className="home">
       <TopBarHome pageLink="home" />
@@ -49,7 +50,7 @@ const Home = () => {
         </p>
       </section>
 
-      <section className="about">
+      <section className="about" id="about">
         <p className="AboutUs">About Us</p>
 
         <div className="developers">
