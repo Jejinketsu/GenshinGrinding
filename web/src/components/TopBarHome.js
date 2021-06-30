@@ -4,6 +4,7 @@ import "../styles/components/TopBar.css";
 import logo from "../images/logo-genshin-2.png";
 
 const TopBarHome = ({ pageLink }) => {
+ 
   return (
     <header className="top-bar">
       <nav className="wrapper">
@@ -28,10 +29,7 @@ const TopBarHome = ({ pageLink }) => {
           </div>
 
           <div className="profile-area">
-          <Link
-              to="/login"
-              className={"nickname"}
-            >
+            <Link to="/login" className={"nickname"}>
               SING IN
             </Link>
           </div>

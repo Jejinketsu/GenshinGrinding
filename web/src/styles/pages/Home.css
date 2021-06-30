@@ -20,8 +20,8 @@ p {
 }
 
 .caracterImg img {
-  max-width: 400px;
-  min-width: 100px;
+  /* background-color: red; */
+  width: 400px;
 }
 
 .amber {
@@ -32,6 +32,7 @@ p {
 .description p {
   width: 60%;
   font-size: 4em;
+  /* background-color: blue; */
 }
 
 .right {
@@ -84,4 +85,74 @@ p {
 
 .developers img {
   width: 100%;
+}
+
+@media screen and (max-width: 1024px) {
+  .description p {
+    width: 50%;
+    font-size: 3.5em;
+  }
+  .amber {
+    right: 20%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .description p {
+    font-size: 2em;
+  }
+  .caracterImg img {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 578px) {
+  .description p {
+    width: 40%;
+  }
+  .caracterImg img {
+    width: 250px;
+  }
+  .amber {
+    right: 30%;
+  }
+  .examples {
+    font-size: 2em;
+  }
+
+  .examplesImages {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .examplesImages img {
+    width: 80%;
+    margin-bottom: 1em;
+  }
+
+  .AboutUs {
+    font-size: 2em;
+  }
+
+  .developers{
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .developers img{
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .description {
+    width: 90%;
+  }
+  .description p {
+    width: 50%;
+  }
+  
+  .caracterImg img {
+    width: 200px;
+  }
 }
