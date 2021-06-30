@@ -11,7 +11,7 @@ import TopBarHome from "../components/TopBarHome";
 
 const Home = () => {
   return (
-    <React.Fragment>
+    <section className="home">
       <TopBarHome pageLink="home" />
 
       <section className="description one">
@@ -64,7 +64,7 @@ const Home = () => {
           of all players. Enjoy :3
         </p>
       </section>
-    </React.Fragment>
+    </section>
   );
 };
 
