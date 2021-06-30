@@ -72,9 +72,11 @@
   color: var(--color-foreground-primary);
   font-size: 1.6rem;
   font-weight: 700;
-  margin-right: 16px;
 }
 
 .top-bar .wrapper .wrapper-left .profile-area .avatar {
   height: 40px;
 }
+
+
+

@@ -6,9 +6,8 @@ import '../styles/components/TopBar.css';
 import logo from '../images/logo-genshin-2.png';
 // import avatar from '../images/avatar.png';
 
-function TopBar({
-  pageLink = 'characters',
-}) {
+function TopBar({pageLink}) {
+
   return (
     <header className='top-bar'>
       <nav className='wrapper'>
@@ -30,6 +29,7 @@ function TopBar({
             >
               Domain
             </Link>
+
           </div>
 
           <div className='profile-area'>
