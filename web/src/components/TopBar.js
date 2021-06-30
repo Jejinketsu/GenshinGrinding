@@ -8,8 +8,6 @@ import logo from '../images/logo-genshin-2.png';
 
 function TopBar({
   pageLink = 'characters',
-}: {
-  pageLink?: 'characters' | 'domain';
 }) {
   return (
     <header className='top-bar'>
