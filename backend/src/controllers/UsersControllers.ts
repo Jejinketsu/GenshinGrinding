@@ -55,7 +55,7 @@ export default {
         
         } catch(error){
             console.log("user create error >>: ", error.message);
-            return response.status(404);
+            return response.sendStatus(404);
         }
     },
 
@@ -81,12 +81,12 @@ export default {
             });
 
             const { password: omitted, ...rest} = user;
-
+            
             return response.json({user: rest, token: token});
 
         } catch(error){
             console.log("user login error >>: ", error.message);
-            return response.send(404);
+            return response.sendStatus(404);
         }
     },
 
