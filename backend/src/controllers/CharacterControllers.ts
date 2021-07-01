@@ -85,5 +85,40 @@ export default {
         }
     },
 
+    async delete(request: Request, response: Response){
+        try {
+            const { character_id } = request.body;
+
+            const characterRepository = getRepository(Character);
+            const character = await characterRepository.findOne({id: character_id});
+
+            if(!character) throw {message: 'character not find'};
+
+            const talentRepository = getRepository(Talent);
+            const talents = await talentRepository.find({
+                character: character,
+            })
+
+            for(const talent of talents){
+                await TalentControllers.delete(talent);
+            }
+
+            await characterRepository.delete(character);
+
+            const character_folder = {
+                entity: 'character',
+                id: character_id,
+                type: '',
+                mime: ''
+            }
+
+            S3.deleteFolder(character_folder);
+
+            return response.sendStatus(200);
+
+        } catch (error) {
+            console.log("delete character error: >>", error.message);
+            return response.sendStatus(404);
+        }
     }
 }

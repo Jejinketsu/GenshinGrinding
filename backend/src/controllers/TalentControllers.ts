@@ -37,5 +37,23 @@ export default {
         }
     },
 
+    async delete(talent: Talent){
+        try {       
+            const params = {
+                entity: 'talent',
+                id: talent.id,
+                type: 'avatar',
+                mime: ''
+            }
+
+            const talentRepository = getRepository(Talent);
+            await talentRepository.delete(talent);
+
+            S3.deleteFile(params);
+
+        } catch(error) {
+            console.log("talent create error >>", error.message);
+        }
+    }
 
 }

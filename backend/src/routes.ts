@@ -41,6 +41,8 @@ routes.post('/create_character', AuthService.authorize, AuthService.authRole([Ro
         {name: 'character_portrait', maxCount: 1},
         {name: 'talent_avatar', maxCount: 3},
     ]), CharacterControllers.create);
+routes.delete('/delete_character', AuthService.authorize, AuthService.authRole([Role.Admin, Role.Admin]),
+    CharacterControllers.delete);
 
 export default routes;
 
