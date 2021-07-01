@@ -85,6 +85,26 @@ export default {
         }
     },
 
+    async getAll(request: Request, response: Response){
+        try {
+            const characterRepository = getRepository(Character);
+            const characters = await characterRepository.find({
+                relations: [ 
+                    "talents",
+                    "talent_itens",
+                    "xp_itens",
+                    "ascencion_itens",
+                ]
+            });
+
+            return response.status(200).json(characters);
+
+        } catch (error) {
+            console.log("getAll character error: >>", error.message);
+            return response.sendStatus(404);
+        }
+    },
+
     async delete(request: Request, response: Response){
         try {
             const { character_id } = request.body;
