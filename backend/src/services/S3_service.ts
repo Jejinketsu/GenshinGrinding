@@ -45,4 +45,30 @@ export default {
             if(s3err) throw s3err;
         });
     },
+
+    async deleteFolder(folderinfo: Fileinfo) {
+        const params = {
+            Bucket: <string> process.env.BUCKET,
+            Prefix: `${folderinfo.entity}/${folderinfo.id}/`
+        }
+
+        service.listObjects(params, function(s3err: Error, data){
+            if(s3err) throw s3err;
+
+            const params = {
+                Bucket: <string> process.env.BUCKET,
+                Delete: {Objects:[{}]}
+            } as {Bucket: string, Delete: {Objects:[{Key: string}]}}
+
+            params.Delete.Objects.pop();
+            data.Contents?.forEach(function(content){
+                params.Delete.Objects.push({Key: <string> content.Key});
+            });
+
+            service.deleteObjects(params, function(s3err: Error, data){
+                if(s3err) throw s3err;
+            });
+        });
+        
+    }
 }
