@@ -29,7 +29,7 @@ routes.delete('/delete_item', AuthService.authorize, AuthService.authRole([Role.
 // Dungeon
 routes.post('/create_dungeon', AuthService.authorize, AuthService.authRole([Role.Admin, Role.Super]), 
     DungeonControllers.create);
-routes.get('/get_dungeons', AuthService.authorize, AuthService.authRole([Role.Admin, Role.Super]),
+routes.get('/get_dungeons', AuthService.authorize,
     DungeonControllers.getAll);
 routes.delete('/delete_dungeon', AuthService.authorize, AuthService.authRole([Role.Admin, Role.Super]),
     DungeonControllers.delete);
