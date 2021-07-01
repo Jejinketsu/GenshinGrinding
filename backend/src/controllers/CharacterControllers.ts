@@ -2,8 +2,9 @@ import { getRepository, Repository } from "typeorm";
 import { Request, Response } from "express";
 import S3 from "../services/S3_service";
 import Character from "../models/Character";
-import Talent from "../models/Telent";
+import Talent from "../models/Talent";
 import Item from "../models/Item";
+import TalentControllers from "./TalentControllers";
 
 const getItens = async (list: string[], repository: Repository<Item>) => {
     let final_list: Item[] | any = [];
@@ -20,12 +21,13 @@ export default {
     async create(request: Request, response: Response){
         try {
             const {
-                name,
+                name_char,
                 element,
                 type_weapon,
                 ascencion_itens,
                 talent_itens,
-                xp_itens
+                xp_itens,
+                name_talent
             } = request.body;
 
             const itemRepository = getRepository(Item);
@@ -36,11 +38,11 @@ export default {
 
             const characterRepository = getRepository(Character);
             const character = characterRepository.create({
-                name: name,
+                name: name_char,
                 element: element,
                 type_weapon: type_weapon,
                 ascencion_itens: ascencion_list,
-                telent_itens: talent_list,
+                talent_itens: talent_list,
                 xp_itens: xp_list,
                 image_path: ''
             });
@@ -69,11 +71,19 @@ export default {
 
             await characterRepository.save(character);
 
+            request.body.character_id = character.id;
+
+            TalentControllers.create(name_talent[0], character, files.talent_avatar[0]);
+            TalentControllers.create(name_talent[1], character, files.talent_avatar[1]);
+            TalentControllers.create(name_talent[2], character, files.talent_avatar[2]);
+
             return response.sendStatus(200);
 
         } catch (error) {
             console.log("create character error: >>", error.message);
             return response.sendStatus(404);
         }
+    },
+
     }
 }

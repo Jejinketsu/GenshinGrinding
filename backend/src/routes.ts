@@ -39,8 +39,8 @@ routes.post('/create_character', AuthService.authorize, AuthService.authRole([Ro
     upload.fields([
         {name: 'character_card', maxCount: 1},
         {name: 'character_portrait', maxCount: 1},
+        {name: 'talent_avatar', maxCount: 3},
     ]), CharacterControllers.create);
-
 
 export default routes;
 
