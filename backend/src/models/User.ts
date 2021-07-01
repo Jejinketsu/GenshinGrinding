@@ -25,7 +25,10 @@ export default class User {
     @Column()
     image_path: string;
 
-    @ManyToMany(() => Character)
+    @ManyToMany(() => Character, {
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
+    })
     @JoinTable()
     characters: Character[];
 

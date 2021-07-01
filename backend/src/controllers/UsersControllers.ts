@@ -1,6 +1,7 @@
 import { getRepository } from 'typeorm';
 import jwt from 'jsonwebtoken';
 import User from '../models/User';
+import Character from '../models/Character';
 import bcrypt from 'bcrypt';
 import {Request ,Response} from 'express';
 import S3 from '../services/S3_service';
@@ -110,7 +111,42 @@ export default {
 
         } catch(error) {
             console.log("user login error >>: ", error.message);
-            return response.send(404);
+            return response.sendStatus(404);
         }
+    },
+
+    async addChar(request: Request, response: Response){
+        try {
+            const {
+                character_id,
+                user
+            } = request.body;
+
+            const usersRepository = getRepository(User);
+            const this_user = await usersRepository.findOne({id: user.id}, {
+                relations: ['characters']
+            });
+
+            if(!this_user) throw {name: 'userException', message: 'user not find'}
+
+            const characterRepository = getRepository(Character);
+            const character = await characterRepository.findOne({id: character_id});
+
+            if(!character) throw {name: 'userException', message: 'character not find'}
+
+            if(!this_user.characters){
+                this_user.characters = [];
+            }
+            this_user.characters.push(character);
+
+            await usersRepository.save(this_user);
+
+            return response.sendStatus(200);
+
+        } catch (error) {
+            console.log("user addChar error >>: ", error.message);
+            return response.sendStatus(404);
+        }
+    },
     }
 }
