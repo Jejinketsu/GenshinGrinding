@@ -16,6 +16,7 @@ routes.post('/signup', upload.single('file'), UsersController.create);
 routes.get('/login', UsersController.login);
 routes.put('/profile_update', AuthService.authorize, UsersController.update);
 routes.patch('/add_char', AuthService.authorize, UsersController.addChar);
+routes.patch('/remove_char', AuthService.authorize, UsersController.removeChar);
 
 // Item
 routes.post('/create_item', AuthService.authorize, AuthService.authRole([Role.Admin, Role.Super]), 

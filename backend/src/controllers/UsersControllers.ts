@@ -148,5 +148,28 @@ export default {
             return response.sendStatus(404);
         }
     },
+
+    async removeChar(request: Request, response: Response){
+        const {
+            character_id,
+            user
+        } = request.body;
+
+        const usersRepository = getRepository(User);
+        const this_user = await usersRepository.findOne({id: user.id}, {
+            relations: ['characters']
+        });
+
+        if(!this_user) throw {name: 'userException', message: 'user not find'}
+
+        if(this_user.characters){
+            this_user.characters = this_user.characters.filter((element: Character) => {
+                return element.id != character_id;
+            });
+        }
+
+        await usersRepository.save(this_user);
+
+        return response.sendStatus(200);
     }
 }
