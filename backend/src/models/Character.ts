@@ -1,6 +1,6 @@
 import { Column, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import Item from './Item';
-import Talent from './Telent';
+import Talent from './Talent';
 
 @Entity()
 export default class Character {
@@ -20,18 +20,30 @@ export default class Character {
     @Column()
     image_path: string;
 
-    @OneToMany(() => Talent, character => Character, { eager: true })
+    @OneToMany(() => Talent, talent => talent.character, {
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    })
     talents: Talent[];
 
-    @ManyToMany(() => Item)
+    @ManyToMany(() => Item, {
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    })
     @JoinTable()
-    telent_itens: Item[];
+    talent_itens: Item[];
 
-    @ManyToMany(() => Item)
+    @ManyToMany(() => Item, {
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    })
     @JoinTable()
     xp_itens: Item[];
 
-    @ManyToMany(() => Item)
+    @ManyToMany(() => Item, {
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    })
     @JoinTable()
     ascencion_itens: Item[];
 }
