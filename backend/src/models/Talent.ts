@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import Character from './Character';
 
 @Entity()
@@ -16,6 +16,6 @@ export default class Talent {
     @Column()
     image_path: string;
 
-    @ManyToOne(() => Character, talents => Talent)
+    @ManyToOne(() => Character, character => character.talents)
     character: Character;
 }
