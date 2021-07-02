@@ -5,6 +5,8 @@ import Character from '../models/Character';
 import bcrypt from 'bcrypt';
 import {Request ,Response} from 'express';
 import S3 from '../services/S3_service';
+import Item from '../models/Item';
+import UserToItem from '../models/UserToItem';
 
 export default {
     async create(request: Request, response: Response) {
@@ -150,26 +152,143 @@ export default {
     },
 
     async removeChar(request: Request, response: Response){
-        const {
-            character_id,
-            user
-        } = request.body;
+        try{
+            const {
+                character_id,
+                user
+            } = request.body;
 
-        const usersRepository = getRepository(User);
-        const this_user = await usersRepository.findOne({id: user.id}, {
-            relations: ['characters']
-        });
-
-        if(!this_user) throw {name: 'userException', message: 'user not find'}
-
-        if(this_user.characters){
-            this_user.characters = this_user.characters.filter((element: Character) => {
-                return element.id != character_id;
+            const usersRepository = getRepository(User);
+            const this_user = await usersRepository.findOne({id: user.id}, {
+                relations: ['characters']
             });
+
+            if(!this_user) throw {name: 'userException', message: 'user not find'}
+
+            if(this_user.characters){
+                this_user.characters = this_user.characters.filter((element: Character) => {
+                    return element.id != character_id;
+                });
+            }
+
+            await usersRepository.save(this_user);
+
+            return response.sendStatus(200);
+        } catch (error) {
+            console.log("user removeChar error >>: ", error.message);
+            return response.sendStatus(404);
         }
+    },
 
-        await usersRepository.save(this_user);
+    async addItem(request: Request, response: Response){
+        try {
+            const { 
+                item_id,
+                quantity,
+                user 
+            } = request.body;
 
-        return response.sendStatus(200);
+            const usersRepository = getRepository(User);
+            const this_user = await usersRepository.findOne({id: user.id});
+
+            if(!this_user) throw {name: 'userException', message: 'user not find'}
+
+            const itemRepository = getRepository(Item);
+            const item = await itemRepository.findOne({id: item_id});
+
+            if(!item) throw {name: 'userException', message: 'item not find'}
+
+            const userToItemRepository = getRepository(UserToItem);
+            const has_userToItem = await userToItemRepository.findOne({item: item, user: this_user});
+
+            if(has_userToItem) throw {name: 'userException', message: 'user already have item'}
+
+            const userToItem = userToItemRepository.create({
+                item: item,
+                user: this_user,
+                quantity: quantity
+            });
+
+            await userToItemRepository.save(userToItem);
+
+            return response.status(200).json(item);
+        } catch (error) {
+            console.log("user addItem error >>: ", error.message);
+            return response.sendStatus(404);
+        }
+    },
+
+    async removeItem(request: Request, response: Response){
+        try {
+            const {
+                item_id,
+                user
+            } = request.body;
+
+            const userToItemRepository = getRepository(UserToItem);
+            await userToItemRepository.delete({
+                itemId: item_id,
+                userId: user.id
+            });
+
+            return response.sendStatus(200);
+
+        } catch (error) {
+            console.log("user removeItem error >>: ", error.message);
+            return response.sendStatus(404);
+        }
+    },
+
+    async alterItem(request: Request, response: Response){
+        try {
+            const {
+                item_id,
+                quantity,
+                user
+            } = request.body;
+
+            const usersRepository = getRepository(User);
+            const this_user = await usersRepository.findOne({id: user.id});
+
+            if(!this_user) throw {name: 'userException', message: 'user not find'}
+
+            const itemRepository = getRepository(Item);
+            const item = await itemRepository.findOne({id: item_id});
+
+            if(!item) throw {name: 'userException', message: 'item not find'}
+
+            const userToItemRepository = getRepository(UserToItem);
+            const userToItem = await userToItemRepository.findOne({item: item, user: this_user});
+
+            if(!userToItem) throw {name: 'userException', message: 'user do not have item'}
+
+            userToItem.quantity = quantity;
+
+            await userToItemRepository.save(userToItem);
+
+            return response.status(200).json(item);
+
+        } catch (error) {
+            console.log("user alterItem error >>: ", error.message);
+            return response.sendStatus(404);
+        }
+    },
+    
+    async getInventory(request: Request, response: Response){
+        try {
+            const { user } = request.body;
+
+            const usersRepository = getRepository(User);
+            const this_user = await usersRepository.findOne({id: user.id}, {
+                relations: ['inventory']
+            });
+
+            if(!this_user) throw {name: 'userException', message: 'user not find'}
+
+            return response.status(200).json(this_user);
+        } catch (error) {
+            console.log("user getInventory error >>: ", error.message);
+            return response.sendStatus(404);
+        }
     }
 }
