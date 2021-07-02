@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import Item from './Item';
 import User from './User';
 
@@ -20,7 +20,8 @@ export default class UserToItem {
     @ManyToOne(() => User, user => user.inventory)
     public user: User;
 
-    @ManyToOne(() => Item, item => item.userToItem)
+    @ManyToOne(() => Item, item => item.userToItem, {eager: true})
+    @JoinTable()
     public item: Item;
 
 }

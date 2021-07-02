@@ -33,6 +33,7 @@ export default class User {
     characters: Character[];
 
     @OneToMany(() => UserToItem, userToItem => userToItem.user)
+    @JoinTable()
     inventory: UserToItem[];
 
 }
