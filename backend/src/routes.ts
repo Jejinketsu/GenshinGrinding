@@ -17,6 +17,10 @@ routes.get('/login', UsersController.login);
 routes.put('/profile_update', AuthService.authorize, UsersController.update);
 routes.patch('/add_char', AuthService.authorize, UsersController.addChar);
 routes.patch('/remove_char', AuthService.authorize, UsersController.removeChar);
+routes.patch('/add_item', AuthService.authorize, UsersController.addItem);
+routes.patch('/remove_item', AuthService.authorize, UsersController.removeItem);
+routes.patch('/alter_item', AuthService.authorize, UsersController.alterItem);
+routes.get('/get_inventory', AuthService.authorize, UsersController.getInventory);
 
 // Item
 routes.post('/create_item', AuthService.authorize, AuthService.authRole([Role.Admin, Role.Super]), 

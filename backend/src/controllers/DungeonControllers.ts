@@ -1,31 +1,7 @@
-import { createQueryBuilder, getRepository } from "typeorm";
+import { getRepository } from "typeorm";
 import { Request, Response } from 'express';
 import Dungeon from '../models/Dungeon';
-import Item from '../models/Item';
 import DungeonToItem from '../models/DungeonToItem';
-
-function formatDungeons(dungeon: any, dungeon_to_item: any){
-    
-    let dungeons = []
-
-    for(let domain of dungeon){
-        const list_itens = dungeon_to_item.filter((drop: any) => {
-            return drop.dungeonId === domain.id;
-        });
-    
-        let data = {
-            id: domain.id,
-            name: domain.name,
-            location: domain.location,
-            type: domain.type,
-            itens: list_itens
-        }
-
-        dungeons.push(data);
-    }
-
-    return dungeons;
-}
 
 export default {
     async create(request: Request, response: Response){
@@ -73,18 +49,12 @@ export default {
     async getAll(request: Request, response: Response){
         try {
             const dungeonRepository = getRepository(Dungeon);
-
-            const dungeonToItemJoined = await createQueryBuilder(DungeonToItem, "dungeon_to_item")
-                .leftJoinAndSelect("dungeon_to_item.item", "item", "item.id = dungeon_to_item.itemId")
-                .getMany();
                 
             const dungeons = await dungeonRepository.find({
                 relations: ["dungeonToItem"],
             });
-
-            const data = formatDungeons(dungeons, dungeonToItemJoined);
                 
-            return response.status(200).json(data);
+            return response.status(200).json(dungeons);
         } catch (error) {
             console.log('list dungeon error >>', error.message);
             return response.sendStatus(404);

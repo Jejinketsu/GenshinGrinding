@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import Dungeon from './Dungeon';
 import Item from './Item';
 
@@ -25,8 +25,10 @@ export default class DungeonToItem {
 
     @ManyToOne(() => Item, item => item.dungeonToItem, {
         onDelete: "CASCADE",
-        onUpdate: "CASCADE"
+        onUpdate: "CASCADE",
+        eager: true
     })
+    @JoinTable()
     public item!: Item;
 
 }
