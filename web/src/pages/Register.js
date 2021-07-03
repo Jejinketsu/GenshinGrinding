@@ -27,7 +27,7 @@ function Register(props) {
 
     const response = await api.post('/signup', data);
 
-    navigate('/');
+    navigate('/login');
   }
 
   return (

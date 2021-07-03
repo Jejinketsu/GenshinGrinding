@@ -1,5 +1,3 @@
-import Inventory from "../components/Inventory";
-import CharList from "../components/CharList";
 import TopBar from "../components/TopBar";
 import "../styles/global.css";
 import InventoryItens from "../components/Inventory/InventaryItens";
@@ -12,8 +10,6 @@ function Characters() {
 
       <div className="main">
         <div className="wrapper">
-          {/* <Inventory /> */}
-          {/* <CharList /> */}
           <InventoryItens />
           <CharactersList />
         </div>

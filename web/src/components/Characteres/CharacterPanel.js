@@ -17,7 +17,7 @@ import pergaminho2 from "../../images/teste/albedo/sealed_scroll_35.png";
 import pergaminho3 from "../../images/teste/albedo/forbidden_curse_scroll_35.png";
 import mora from "../../images/teste/albedo/mora.png";
 import cecilia from "../../images/teste/albedo/cecilia_35.png";
-import coroa from "../../images/teste/albedo/crown.png";
+import coroa from "../../images/teste/albedo/Crown.png";
 import livro1 from "../../images/teste/albedo/teaching_of_ballad_35.png";
 import livro2 from "../../images/teste/albedo/guide_to_ballad_35.png";
 import livro3 from "../../images/teste/albedo/philosophies_of_ballad_35.png";

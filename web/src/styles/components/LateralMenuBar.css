@@ -1,0 +1,125 @@
+.Menu-lateral {
+  background-color: var(--color-background-secondary);
+  width: 300px;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.Menu-logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.Menu-logo img {
+  width: 40%;
+}
+
+.Admin-perfil {
+  margin: 5em 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "adminPhoto adminName"
+    "adminPhoto admin";
+  align-items: center;
+}
+
+.adminPhoto {
+  grid-area: adminPhoto;
+  width: 40px;
+  height: 40px;
+  margin: 0 10px;
+}
+
+.adminName {
+  grid-area: adminName;
+  font-size: 2em;
+  margin-bottom: -5px;
+}
+
+.admin {
+  grid-area: admin;
+  font-size: 1.2em;
+}
+
+.Menu-navigate {
+  width: 100%;
+}
+
+.Menu-navigate ul li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  height: 50px;
+  font-size: 2em;
+  cursor: pointer;
+  transition: 0.1s ease-out;
+  position: relative;
+}
+
+.Menu-navigate ul li .setOption{
+  position: absolute;
+  width: 3px;
+  height: 90%;
+  right: 0;
+  background:transparent;
+}
+
+.Menu-navigate ul li:hover {
+  background-color: var(--color-background-primary);
+}
+
+.Menu-navigate a img {
+  width: 40px;
+  max-height: auto;
+  margin: 0 10px;
+  opacity: 0.5;
+}
+
+.logout {
+  position: absolute;
+  align-self: flex-start;
+  bottom: 40px;
+  margin: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 110px;
+  height: 50px;
+  font-size: 1.5em;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  padding: 5px 10px;
+  background: transparent;
+  cursor: pointer;
+  color: #fff;
+  transition: 0.1s ease-out;
+}
+
+.logout:hover {
+  background: var(--color-background-primary);
+}
+
+.logout img {
+  width: 30%;
+}
+
+nav ul a {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.active{
+  color: rgba(255, 255, 255, 1);
+}
+
+.active li img{
+  opacity: 1;
+}
+
+.Menu-navigate ul .active li .setOption{
+  background: #fff;
+}
