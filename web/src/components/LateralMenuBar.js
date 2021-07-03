@@ -13,7 +13,9 @@ const LateralMenuBar = () => {
   return (
     <div className="Menu-lateral">
       <div className="Menu-logo">
-        <img src={logo} alt="logo-genshin" />
+        <a href="/">
+          <img src={logo} alt="logo-genshin" />
+        </a>
       </div>
 
       <div className="Admin-perfil">

@@ -13,8 +13,12 @@
   justify-content: center;
 }
 
-.Menu-logo img {
+.Menu-logo a{
   width: 40%;
+}
+
+.Menu-logo img {
+  width: 100%;
 }
 
 .Admin-perfil {
