@@ -1,5 +1,24 @@
-.CadForm {
+
+
+.file{
+  margin-bottom: 1rem;
+}
+
+.previewImg{
+  width: 150px;
+}
+
+.preview{
   width: 100%;
-  height: 100vh;
-  overflow-y: auto;
+  border-radius: 1rem;
+  background-size: cover;
+  background-position: center center;
+}
+
+.preview::after{
+  content: '';
+  display: block;
+  height: 0px;
+  padding-bottom: 100%;
+  
 }

@@ -149,3 +149,8 @@
   .character {
   transform: translateY(3px);
 }
+
+
+.character{
+  width: 30px;
+}

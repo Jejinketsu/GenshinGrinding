@@ -1,0 +1,59 @@
+.CustomSelect {
+  width: 400px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+.CustomSelect label {
+  font-size: 2em;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: var(--color-background-secondary);
+  background-image: none;
+  flex: 1;
+  padding: 10px 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 2em;
+}
+select::-ms-expand {
+  display: none;
+}
+.select {
+  border: 2px solid rgba(13, 11, 22, 0.5);
+  position: relative;
+  display: flex;
+  width: 100%;
+  line-height: 3;
+  overflow: hidden;
+  border-radius: 5px;
+  margin: 3px 0;
+}
+.select::after {
+  content: "\25BC";
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px 15px;
+  background: #2b2e2e;
+  cursor: pointer;
+  pointer-events: none;
+  transition: 0.25s all ease;
+  height: 100px;
+  text-align: center;
+}
+.select:hover::after {
+  color: #23b499;
+}
