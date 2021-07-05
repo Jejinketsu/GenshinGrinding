@@ -1,0 +1,27 @@
+.CustomInput {
+  width: 400px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: flex-start;
+  margin-top: 10px;
+}
+
+.CustomInput label {
+  font-size: 2em;
+}
+
+.CustomInput .Input {
+  width: 100%;
+  padding: 10px 5px;
+  font-size: 2em;
+  background: var(--color-background-secondary);
+  border-radius: 5px;
+  border: 2px solid rgba(13, 11, 22, 0.5);
+  color: #fff;
+  margin: 3px 0;
+}
+.CustomInput .Input:focus {
+  outline: none;
+}
