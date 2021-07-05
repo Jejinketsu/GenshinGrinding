@@ -1,16 +1,18 @@
 import { getRepository, Repository } from "typeorm";
-import { Request, Response } from "express";
+import { NextFunction, request, Request, Response } from "express";
 import S3 from "../services/S3_service";
 import Character from "../models/Character";
 import Talent from "../models/Talent";
 import Item from "../models/Item";
 import TalentControllers from "./TalentControllers";
+import EntityNotFoundException from "../exceptions/EntityNotFoundException";
 
 const getItens = async (list: string[], repository: Repository<Item>) => {
     let final_list: Item[] | any = [];
 
     for(let item_id of list){
         const item = await repository.findOne({id: Number(item_id)});
+        if(!item) throw new EntityNotFoundException("Item", "id", item_id);
         final_list.push(item);
     }
 
@@ -18,7 +20,7 @@ const getItens = async (list: string[], repository: Repository<Item>) => {
 }
 
 export default {
-    async create(request: Request, response: Response){
+    async create(request: Request, response: Response, next: NextFunction){
         try {
             const {
                 name_char,
@@ -80,12 +82,12 @@ export default {
             return response.sendStatus(200);
 
         } catch (error) {
-            console.log("create character error: >>", error.message);
-            return response.sendStatus(404);
+            console.error("create character error: >>", error.message);
+            next(error);
         }
     },
 
-    async getAll(request: Request, response: Response){
+    async getAll(request: Request, response: Response, next: NextFunction){
         try {
             const characterRepository = getRepository(Character);
             const characters = await characterRepository.find({
@@ -100,19 +102,19 @@ export default {
             return response.status(200).json(characters);
 
         } catch (error) {
-            console.log("getAll character error: >>", error.message);
-            return response.sendStatus(404);
+            console.error("getAll character error: >>", error.message);
+            next(error);
         }
     },
 
-    async delete(request: Request, response: Response){
+    async delete(request: Request, response: Response, next: NextFunction){
         try {
             const { character_id } = request.body;
 
             const characterRepository = getRepository(Character);
             const character = await characterRepository.findOne({id: character_id});
 
-            if(!character) throw {message: 'character not find'};
+            if(!character) throw new EntityNotFoundException("Character", "id", character_id);
 
             const talentRepository = getRepository(Talent);
             const talents = await talentRepository.find({
@@ -137,8 +139,8 @@ export default {
             return response.sendStatus(200);
 
         } catch (error) {
-            console.log("delete character error: >>", error.message);
-            return response.sendStatus(404);
+            console.error("delete character error: >>", error.message);
+            next(error);
         }
     }
 }
