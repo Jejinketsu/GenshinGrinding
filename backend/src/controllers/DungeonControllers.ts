@@ -2,10 +2,12 @@ import { getRepository } from "typeorm";
 import { NextFunction, Request, Response } from 'express';
 import Dungeon from '../models/Dungeon';
 import DungeonToItem from '../models/DungeonToItem';
+import logger from '../../logger';
 
 export default {
     async create(request: Request, response: Response, next: NextFunction){
         try {
+            logger.info(`tried create new dungeons`);
             const {
                 name,
                 type,
@@ -38,6 +40,8 @@ export default {
                 }
             }
 
+            logger.info(`successful created new dungeons ${dungeon.name}`);
+
             return response.status(200).json(dungeon);
 
         } catch (error) {
@@ -48,11 +52,16 @@ export default {
 
     async getAll(request: Request, response: Response, next: NextFunction){
         try {
+
+            logger.info(`tried get all dungeons`);
+
             const dungeonRepository = getRepository(Dungeon);
                 
             const dungeons = await dungeonRepository.find({
                 relations: ["dungeonToItem"],
             });
+
+            logger.info(`sucessful obteined all dungeons`);
                 
             return response.status(200).json(dungeons);
         } catch (error) {
@@ -65,8 +74,12 @@ export default {
         try {
             const { id } = request.body;
 
+            logger.info(`tried delete dungeon with ${id}`);
+
             const dungeonRepository = getRepository(Dungeon);
             await dungeonRepository.delete({id});
+
+            logger.info(`successful deleted dungeon with id ${id}`);
 
             return response.sendStatus(200);
         } catch(error) {
