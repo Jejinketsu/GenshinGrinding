@@ -1,10 +1,10 @@
 import { getRepository } from "typeorm";
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import Dungeon from '../models/Dungeon';
 import DungeonToItem from '../models/DungeonToItem';
 
 export default {
-    async create(request: Request, response: Response){
+    async create(request: Request, response: Response, next: NextFunction){
         try {
             const {
                 name,
@@ -41,12 +41,12 @@ export default {
             return response.status(200).json(dungeon);
 
         } catch (error) {
-            console.log('create dungeon error >>', error.message);
-            return response.sendStatus(404);
+            console.error('create dungeon error >>', error.message);
+            next(error);
         }
     },
 
-    async getAll(request: Request, response: Response){
+    async getAll(request: Request, response: Response, next: NextFunction){
         try {
             const dungeonRepository = getRepository(Dungeon);
                 
@@ -56,12 +56,12 @@ export default {
                 
             return response.status(200).json(dungeons);
         } catch (error) {
-            console.log('list dungeon error >>', error.message);
-            return response.sendStatus(404);
+            console.error('list dungeon error >>', error.message);
+            next(error);
         }
     },
 
-    async delete(request: Request, response: Response){
+    async delete(request: Request, response: Response, next: NextFunction){
         try {
             const { id } = request.body;
 
@@ -70,8 +70,8 @@ export default {
 
             return response.sendStatus(200);
         } catch(error) {
-            console.log('delete dungeon error >>', error.message);
-            return response.sendStatus(404);
+            console.error('delete dungeon error >>', error.message);
+            next(error);
         }
     }
 }
