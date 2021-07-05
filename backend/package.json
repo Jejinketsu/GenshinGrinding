@@ -28,6 +28,7 @@
     "dotenv": "^8.2.0",
     "dotenv-safe": "^8.2.0",
     "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^8.5.1",
     "multer": "^1.4.2",
     "path": "^0.12.7",
@@ -35,6 +36,7 @@
     "reflect-metadata": "^0.1.13",
     "sqlite3": "^5.0.0",
     "ts-node": "^10.0.0",
-    "typeorm": "^0.2.34"
+    "typeorm": "^0.2.34",
+    "winston": "^3.3.3"
   }
 }
