@@ -6,6 +6,7 @@ import Talent from "../models/Talent";
 import Item from "../models/Item";
 import TalentControllers from "./TalentControllers";
 import EntityNotFoundException from "../exceptions/EntityNotFoundException";
+import logger from '../../logger';
 
 const getItens = async (list: string[], repository: Repository<Item>) => {
     let final_list: Item[] | any = [];
@@ -31,6 +32,8 @@ export default {
                 xp_itens,
                 name_talent
             } = request.body;
+
+            logger.info(`tried create new character`);
 
             const itemRepository = getRepository(Item);
             
@@ -79,6 +82,8 @@ export default {
             TalentControllers.create(name_talent[1], character, files.talent_avatar[1]);
             TalentControllers.create(name_talent[2], character, files.talent_avatar[2]);
 
+            logger.info(`successful created character ${character.name}`);
+
             return response.sendStatus(200);
 
         } catch (error) {
@@ -89,6 +94,9 @@ export default {
 
     async getAll(request: Request, response: Response, next: NextFunction){
         try {
+
+            logger.info(`tried get all characters`);
+
             const characterRepository = getRepository(Character);
             const characters = await characterRepository.find({
                 relations: [ 
@@ -98,6 +106,8 @@ export default {
                     "ascencion_itens",
                 ]
             });
+
+            logger.info(`successful obteined all characters`);
 
             return response.status(200).json(characters);
 
@@ -110,6 +120,8 @@ export default {
     async delete(request: Request, response: Response, next: NextFunction){
         try {
             const { character_id } = request.body;
+
+            logger.info(`tried delete character with id ${character_id}`);
 
             const characterRepository = getRepository(Character);
             const character = await characterRepository.findOne({id: character_id});
@@ -135,6 +147,8 @@ export default {
             }
 
             S3.deleteFolder(character_folder);
+
+            logger.info(`successful deleted character with id ${character_id}`);
 
             return response.sendStatus(200);
 
