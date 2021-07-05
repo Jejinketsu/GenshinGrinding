@@ -4,6 +4,7 @@ import { NextFunction, Request, Response } from 'express';
 import S3 from '../services/S3_service';
 import EntityAlreadyExistsException from '../exceptions/EntityAlreadyExistsException';
 import EntityNotFoundException from '../exceptions/EntityNotFoundException';
+import logger from '../../logger';
 
 export default {
     async create(request: Request, response: Response, next: NextFunction){
@@ -14,6 +15,8 @@ export default {
                 rarity,
                 description,
             } = request.body;
+
+            logger.info(`create new item`);
 
             const itemRepository = getRepository(Item);
             const already_item = await itemRepository.findOne({
@@ -47,6 +50,8 @@ export default {
 
             await itemRepository.save(item);
 
+            logger.info(`item ${item.name} successful created`);
+
             return response.sendStatus(202);
 
         } catch(error) {
@@ -64,6 +69,8 @@ export default {
                 rarity,
                 description,
             } = request.body;
+
+            logger.info(`tried update item with id ${id}`);
 
             const itemRepository = getRepository(Item);
             const item = await itemRepository.findOne({id});
@@ -90,18 +97,25 @@ export default {
 
             await itemRepository.save(item);
 
+            logger.info(`sucessful updated item ${item.name} with id ${id}`);
+
             return response.status(200).json(item);
 
         } catch (error) {
-            console.log("item update error >>: ", error.message);
-            return response.sendStatus(404);
+            console.error("item update error >>: ", error.message);
+            next(error);
         }
     },
 
     async getAll(request: Request, response: Response, next: NextFunction){
         try {
+
+            logger.info(`tried get all itens`);
+
             const itemRepository = getRepository(Item);
             const itens = await itemRepository.find({});
+
+            logger.info(`successful obtained all itens`);
 
             return response.status(200).json(itens);
         } catch(error) {
@@ -114,6 +128,8 @@ export default {
         try {
             const { id } = request.body;
 
+            logger.info(`tried delete item with id ${id}`);
+
             const itemRepository = getRepository(Item);
             await itemRepository.delete(id);
 
@@ -125,6 +141,8 @@ export default {
             }
 
             S3.deleteFile(params);
+
+            logger.info(`successful deleted item with id ${id}`);
 
             return response.sendStatus(200);
         } catch (error) {
