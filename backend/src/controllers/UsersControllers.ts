@@ -10,9 +10,11 @@ import UserToItem from '../models/UserToItem';
 import EntityAlreadyExistsException from '../exceptions/EntityAlreadyExistsException';
 import EntityNotFoundException from '../exceptions/EntityNotFoundException';
 import WrongPasswordException from '../exceptions/WrongPasswordException';
+import logger from '../../logger';
 
 export default {
     async create(request: Request, response: Response, next: NextFunction) {
+        logger.info("singup - create new user");
         try{
             const {
                 username,
@@ -56,6 +58,8 @@ export default {
             
             const { password: omitted, ...rest} = user;
 
+            logger.info(`singup - user ${user.username} successful created`);
+
             return response.status(201).json({user: rest, token: token});
         
         } catch(error){
@@ -69,6 +73,8 @@ export default {
             const [hashType, hash]: String[] | any = request.headers.authorization?.split(" ")
             const [username, password] = Buffer.from(hash, 'base64').toString().split(":");
             
+            logger.info(`user ${username} tried login`);
+
             const usersRepository = getRepository(User);
             const user = await usersRepository.findOne({
                 username: username
@@ -86,6 +92,8 @@ export default {
             });
 
             const { password: omitted, ...rest} = user;
+
+            logger.info(`user ${user.username} successful logged in`);
             
             return response.json({user: rest, token: token});
 
@@ -102,6 +110,8 @@ export default {
                 nickname
             } = request.body;
 
+            logger.info(`update - user ${username} tried update infos`);
+            
             const usersRepository = getRepository(User);
             const user = await usersRepository.findOne({ username })
 
@@ -110,6 +120,8 @@ export default {
             user.nickname = nickname;
 
             await usersRepository.save(user);
+
+            logger.info(`update - user ${username} successful updated infos`);
 
             return response.sendStatus(200);
 
@@ -125,6 +137,8 @@ export default {
                 character_id,
                 user
             } = request.body;
+
+            logger.info(`addChar - user ${user.username} tried add character in their list`);
 
             const usersRepository = getRepository(User);
             const this_user = await usersRepository.findOne({id: user.id}, {
@@ -145,6 +159,8 @@ export default {
 
             await usersRepository.save(this_user);
 
+            logger.info(`addChar - user ${user.username} successful added character in their list`);
+
             return response.sendStatus(200);
 
         } catch (error) {
@@ -160,6 +176,8 @@ export default {
                 user
             } = request.body;
 
+            logger.info(`removeChar - user ${user.username} tried remove character from their list`);
+
             const usersRepository = getRepository(User);
             const this_user = await usersRepository.findOne({id: user.id}, {
                 relations: ['characters']
@@ -172,6 +190,8 @@ export default {
                     return element.id != character_id;
                 });
             }
+
+            logger.info(`removeChar - user ${user.username} successful removed character from their list`);
 
             await usersRepository.save(this_user);
 
@@ -189,6 +209,8 @@ export default {
                 quantity,
                 user 
             } = request.body;
+
+            logger.info(`addItem - user ${user.username} tried add item in their inventory`);
 
             const usersRepository = getRepository(User);
             const this_user = await usersRepository.findOne({id: user.id});
@@ -213,6 +235,8 @@ export default {
 
             await userToItemRepository.save(userToItem);
 
+            logger.info(`addItem - user ${user.username} successful added item in their inventory`);
+
             return response.status(200).json(item);
         } catch (error) {
             console.error("user addItem error >>: ", error.message);
@@ -227,11 +251,15 @@ export default {
                 user
             } = request.body;
 
+            logger.info(`removeItem - user ${user.username} tried remove item in their inventory`);
+
             const userToItemRepository = getRepository(UserToItem);
             await userToItemRepository.delete({
                 itemId: item_id,
                 userId: user.id
             });
+
+            logger.info(`removeItem - user ${user.username} successful removed item in their inventory`);
 
             return response.sendStatus(200);
 
@@ -248,6 +276,8 @@ export default {
                 quantity,
                 user
             } = request.body;
+
+            logger.info(`alterItem - user ${user.username} tried update item in their inventory`);
 
             const usersRepository = getRepository(User);
             const this_user = await usersRepository.findOne({id: user.id});
@@ -268,6 +298,8 @@ export default {
 
             await userToItemRepository.save(userToItem);
 
+            logger.info(`alterItem - user ${user.username} successful updated item in their inventory`);
+
             return response.status(200).json(item);
 
         } catch (error) {
@@ -279,6 +311,8 @@ export default {
     async getInventory(request: Request, response: Response, next: NextFunction){
         try {
             const { user } = request.body;
+
+            logger.info(`getInventory - user ${user.username} tried to get their inventory`);
 
             const usersRepository = getRepository(User);
             const this_user = await usersRepository.findOne({id: user.id}, {
