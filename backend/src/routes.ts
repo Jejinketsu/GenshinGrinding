@@ -2,7 +2,7 @@ import { Router } from 'express';
 import multer from 'multer';
 import Role from './config/roles';
 import uploadConfig from './config/upload';
-import AuthService from './controllers/AuthService';
+import AuthService from './middlewares/AuthService';
 import UsersController from './controllers/UsersControllers';
 import ItemController from './controllers/ItemControllers';
 import DungeonControllers from './controllers/DungeonControllers';

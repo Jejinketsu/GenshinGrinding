@@ -2,6 +2,8 @@ import { getRepository } from 'typeorm';
 import jwt from 'jsonwebtoken';
 import User from '../models/User';
 import { Request, Response, NextFunction } from 'express';
+import EntityNotFoundException from '../exceptions/EntityNotFoundException';
+import HttpException from '../exceptions/HttpExceptions';
 
 export default {
     async authorize(request: Request, response: Response, next: NextFunction){
@@ -14,7 +16,7 @@ export default {
 
             const user = await usersRepository.findOne({id: (<any>payload).user});
 
-            if(!user) throw {name: 'userException', message: 'user not find'}
+            if(!user) throw new EntityNotFoundException("User", "id", (<any>payload).user.id);
 
             const { password: omitted, ...rest} = user;
 
@@ -24,7 +26,7 @@ export default {
 
         } catch(error) {
             console.log("user login error >>: ", error.message);
-            return response.sendStatus(404);
+            next(error);
         }
     },
 
@@ -36,7 +38,10 @@ export default {
         return (request: Request, response: Response, next: NextFunction) => {
 
             if(roles.length && !roles.includes(request.body.user?.role)){
-                return response.status(401).json({ message: 'Unauthorized' });
+                next(new HttpException(
+                    401, 
+                    `Unauthorized user in route: ${request.originalUrl}`
+                ));
             }
 
             next();
