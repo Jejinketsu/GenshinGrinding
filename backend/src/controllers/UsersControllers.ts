@@ -3,14 +3,16 @@ import jwt from 'jsonwebtoken';
 import User from '../models/User';
 import Character from '../models/Character';
 import bcrypt from 'bcrypt';
-import {Request ,Response} from 'express';
+import {NextFunction, Request ,Response} from 'express';
 import S3 from '../services/S3_service';
 import Item from '../models/Item';
 import UserToItem from '../models/UserToItem';
+import EntityAlreadyExistsException from '../exceptions/EntityAlreadyExistsException';
+import EntityNotFoundException from '../exceptions/EntityNotFoundException';
+import WrongPasswordException from '../exceptions/WrongPasswordException';
 
 export default {
-    async create(request: Request, response: Response) {
-
+    async create(request: Request, response: Response, next: NextFunction) {
         try{
             const {
                 username,
@@ -18,12 +20,13 @@ export default {
                 password,
             } = request.body;
             
+            
             const usersRepository = getRepository(User);
             const already_user = await usersRepository.findOne({
                 username: username
             });
 
-            if(already_user) throw {name: 'userExcpetion', message: 'username already exists'}
+            if(already_user) throw new EntityAlreadyExistsException("User", "username", username);
 
             let filepath;
             if(request.file){
@@ -42,7 +45,6 @@ export default {
                 username,
                 nickname,
                 password: encrypted_password,
-                role: 'user',
                 image_path: <string> filepath,
             });
             
@@ -57,12 +59,12 @@ export default {
             return response.status(201).json({user: rest, token: token});
         
         } catch(error){
-            console.log("user create error >>: ", error.message);
-            return response.sendStatus(404);
+            console.error("user create error >>: ", error.message);
+            next(error);
         }
     },
 
-    async login(request: Request, response: Response){
+    async login(request: Request, response: Response, next: NextFunction){
         try {
             const [hashType, hash]: String[] | any = request.headers.authorization?.split(" ")
             const [username, password] = Buffer.from(hash, 'base64').toString().split(":");
@@ -72,13 +74,13 @@ export default {
                 username: username
             });
             
-            if(!user) throw {name: 'loginException', message: 'user not find'}
+            if(!user) throw new EntityNotFoundException("User", "username", username);
 
             const password_isValid = bcrypt.compareSync(password, <string> user?.password);
 
-            if(!password_isValid) throw {name: 'loginException', message: 'invalid password'}
+            if(!password_isValid) throw new WrongPasswordException(username);
 
-            console.log('user: ' + user);
+            console.error('user: ' + user);
             const token = jwt.sign({user: user?.id}, <string> process.env.SECRET, {
                 expiresIn: 86400,
             });
@@ -88,12 +90,12 @@ export default {
             return response.json({user: rest, token: token});
 
         } catch(error){
-            console.log("user login error >>: ", error.message);
-            return response.sendStatus(404);
+            console.error("user login error >>: ", error.message);
+            next(error);
         }
     },
 
-    async update(request: Request, response: Response) {
+    async update(request: Request, response: Response, next: NextFunction) {
         try {
             const {
                 username,
@@ -103,7 +105,7 @@ export default {
             const usersRepository = getRepository(User);
             const user = await usersRepository.findOne({ username })
 
-            if(!user) throw {name: 'updateException', message: 'user not find'}
+            if(!user) throw new EntityNotFoundException("User", "username", username);
 
             user.nickname = nickname;
 
@@ -112,12 +114,12 @@ export default {
             return response.sendStatus(200);
 
         } catch(error) {
-            console.log("user login error >>: ", error.message);
-            return response.sendStatus(404);
+            console.error("user login error >>: ", error.message);
+            next(error);
         }
     },
 
-    async addChar(request: Request, response: Response){
+    async addChar(request: Request, response: Response, next: NextFunction){
         try {
             const {
                 character_id,
@@ -129,12 +131,12 @@ export default {
                 relations: ['characters']
             });
 
-            if(!this_user) throw {name: 'userException', message: 'user not find'}
+            if(!this_user) throw new EntityNotFoundException("User", "id", user.id);
 
             const characterRepository = getRepository(Character);
             const character = await characterRepository.findOne({id: character_id});
 
-            if(!character) throw {name: 'userException', message: 'character not find'}
+            if(!character) throw new EntityNotFoundException("Character", "id", character_id);
 
             if(!this_user.characters){
                 this_user.characters = [];
@@ -146,12 +148,12 @@ export default {
             return response.sendStatus(200);
 
         } catch (error) {
-            console.log("user addChar error >>: ", error.message);
-            return response.sendStatus(404);
+            console.error("user addChar error >>: ", error.message);
+            next(error);
         }
     },
 
-    async removeChar(request: Request, response: Response){
+    async removeChar(request: Request, response: Response, next: NextFunction){
         try{
             const {
                 character_id,
@@ -163,7 +165,7 @@ export default {
                 relations: ['characters']
             });
 
-            if(!this_user) throw {name: 'userException', message: 'user not find'}
+            if(!this_user) throw new EntityNotFoundException("User", "id", user.id);
 
             if(this_user.characters){
                 this_user.characters = this_user.characters.filter((element: Character) => {
@@ -175,12 +177,12 @@ export default {
 
             return response.sendStatus(200);
         } catch (error) {
-            console.log("user removeChar error >>: ", error.message);
-            return response.sendStatus(404);
+            console.error("user removeChar error >>: ", error.message);
+            next(error);
         }
     },
 
-    async addItem(request: Request, response: Response){
+    async addItem(request: Request, response: Response, next: NextFunction){
         try {
             const { 
                 item_id,
@@ -191,17 +193,17 @@ export default {
             const usersRepository = getRepository(User);
             const this_user = await usersRepository.findOne({id: user.id});
 
-            if(!this_user) throw {name: 'userException', message: 'user not find'}
+            if(!this_user) throw new EntityNotFoundException("User", "id", user.id);
 
             const itemRepository = getRepository(Item);
             const item = await itemRepository.findOne({id: item_id});
 
-            if(!item) throw {name: 'userException', message: 'item not find'}
+            if(!item) throw new EntityNotFoundException("Item", "id", item_id);
 
             const userToItemRepository = getRepository(UserToItem);
             const has_userToItem = await userToItemRepository.findOne({item: item, user: this_user});
 
-            if(has_userToItem) throw {name: 'userException', message: 'user already have item'}
+            if(has_userToItem) throw new EntityAlreadyExistsException("Item", "name", item.name)
 
             const userToItem = userToItemRepository.create({
                 item: item,
@@ -213,12 +215,12 @@ export default {
 
             return response.status(200).json(item);
         } catch (error) {
-            console.log("user addItem error >>: ", error.message);
-            return response.sendStatus(404);
+            console.error("user addItem error >>: ", error.message);
+            next(error);
         }
     },
 
-    async removeItem(request: Request, response: Response){
+    async removeItem(request: Request, response: Response, next: NextFunction){
         try {
             const {
                 item_id,
@@ -234,12 +236,12 @@ export default {
             return response.sendStatus(200);
 
         } catch (error) {
-            console.log("user removeItem error >>: ", error.message);
-            return response.sendStatus(404);
+            console.error("user removeItem error >>: ", error.message);
+            next(error);
         }
     },
 
-    async alterItem(request: Request, response: Response){
+    async alterItem(request: Request, response: Response, next: NextFunction){
         try {
             const {
                 item_id,
@@ -250,17 +252,17 @@ export default {
             const usersRepository = getRepository(User);
             const this_user = await usersRepository.findOne({id: user.id});
 
-            if(!this_user) throw {name: 'userException', message: 'user not find'}
+            if(!this_user) throw new EntityNotFoundException("User", "id", user.id);
 
             const itemRepository = getRepository(Item);
             const item = await itemRepository.findOne({id: item_id});
 
-            if(!item) throw {name: 'userException', message: 'item not find'}
+            if(!item) throw new EntityNotFoundException("Item", "id", item_id);
 
             const userToItemRepository = getRepository(UserToItem);
             const userToItem = await userToItemRepository.findOne({item: item, user: this_user});
 
-            if(!userToItem) throw {name: 'userException', message: 'user do not have item'}
+            if(!userToItem) throw new EntityNotFoundException("Item", "id", item_id);
 
             userToItem.quantity = quantity;
 
@@ -269,12 +271,12 @@ export default {
             return response.status(200).json(item);
 
         } catch (error) {
-            console.log("user alterItem error >>: ", error.message);
-            return response.sendStatus(404);
+            console.error("user alterItem error >>: ", error.message);
+            next(error);
         }
     },
     
-    async getInventory(request: Request, response: Response){
+    async getInventory(request: Request, response: Response, next: NextFunction){
         try {
             const { user } = request.body;
 
@@ -283,12 +285,14 @@ export default {
                 relations: ['inventory']
             });
 
-            if(!this_user) throw {name: 'userException', message: 'user not find'}
+            if(!this_user) throw new EntityNotFoundException("User", "id", user.id);
+
+            logger.info(`getInventory - user ${user.username} successful obteined their inventory`);
 
             return response.status(200).json(this_user);
         } catch (error) {
-            console.log("user getInventory error >>: ", error.message);
-            return response.sendStatus(404);
+            console.error("user getInventory error >>: ", error.message);
+            next(error);
         }
     }
 }
