@@ -1,10 +1,12 @@
 import { getRepository } from 'typeorm';
 import Item from '../models/Item';
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import S3 from '../services/S3_service';
+import EntityAlreadyExistsException from '../exceptions/EntityAlreadyExistsException';
+import EntityNotFoundException from '../exceptions/EntityNotFoundException';
 
 export default {
-    async create(request: Request, response: Response){
+    async create(request: Request, response: Response, next: NextFunction){
         try {
             const {
                 name,
@@ -18,7 +20,7 @@ export default {
                 name,
             });
 
-            if(already_item) throw {name: 'itemExcpetion', message: 'item already exists'};
+            if(already_item) throw new EntityAlreadyExistsException("Item", "name", name);
 
             const item = itemRepository.create({
                 name: name,
@@ -48,12 +50,12 @@ export default {
             return response.sendStatus(202);
 
         } catch(error) {
-            console.log("item create error >>: ", error.message);
-            return response.sendStatus(404);
+            console.error("item create error >>: ", error.message);
+            next(error);
         }
     },
 
-    async update(request: Request, response: Response){
+    async update(request: Request, response: Response, next: NextFunction){
         try {
             const {
                 id,
@@ -66,7 +68,7 @@ export default {
             const itemRepository = getRepository(Item);
             const item = await itemRepository.findOne({id});
 
-            if(!item) throw {name: 'itemExcpetion', message: 'item already exists'};
+            if(!item) throw new EntityNotFoundException("Item", "id", id);
 
             let image_path;
             if(request.file){
@@ -96,21 +98,21 @@ export default {
         }
     },
 
-    async getAll(request: Request, response: Response){
+    async getAll(request: Request, response: Response, next: NextFunction){
         try {
             const itemRepository = getRepository(Item);
             const itens = await itemRepository.find({});
 
             return response.status(200).json(itens);
         } catch(error) {
-            console.log("item list error >>: ", error.message);
-            return response.sendStatus(404);
+            console.error("item list error >>: ", error.message);
+            next(error);
         }
     },
 
-    async delete(request: Request, response: Response){
+    async delete(request: Request, response: Response, next: NextFunction){
         try {
-            const { id, name } = request.body;
+            const { id } = request.body;
 
             const itemRepository = getRepository(Item);
             await itemRepository.delete(id);
@@ -126,8 +128,8 @@ export default {
 
             return response.sendStatus(200);
         } catch (error) {
-            console.log("item delete error >>: ", error.message);
-            return response.sendStatus(404);
+            console.error("item delete error >>: ", error.message);
+            next(error);
         }
     }
 }
