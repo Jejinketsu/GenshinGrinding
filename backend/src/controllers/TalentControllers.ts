@@ -1,13 +1,14 @@
 import { getRepository } from 'typeorm';
-import { Request, Response } from 'express';
 import S3 from '../services/S3_service';
 import Character from '../models/Character';
 import Talent from '../models/Talent';
+import logger from '../../logger';
 
 export default {
 
     async create(name_talent: string, character: Character, image: Express.Multer.File){
         try {
+            logger.info(`create new talent`);
             const talentRepository = getRepository(Talent);
             const talent = talentRepository.create({
                 name: name_talent,
@@ -30,15 +31,21 @@ export default {
 
             await talentRepository.save(talent);
 
+            logger.info(`talent ${talent.name} successful created`);
+
             return talent;
 
         } catch (error) {
-            console.log("talent create error >>", error.message);
+            console.error("talent create error >>", error.message);
+            return error;
         }
     },
 
     async delete(talent: Talent){
         try {       
+
+            logger.info(`delete talent ${talent.name}`);
+
             const params = {
                 entity: 'talent',
                 id: talent.id,
@@ -51,8 +58,11 @@ export default {
 
             S3.deleteFile(params);
 
+            logger.info(`talent ${talent.name} successful deleted`);
+
         } catch(error) {
-            console.log("talent create error >>", error.message);
+            console.error("talent create error >>", error.message);
+            return error;
         }
     }
 
