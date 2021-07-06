@@ -1,6 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import DungeonToItem from './DungeonToItem';
 import UserToItem from './UserToItem';
+import tag_item from '../config/tag_item';
 
 @Entity()
 export default class Item {
@@ -16,6 +17,12 @@ export default class Item {
     @Column()
     type: string;
 
+    @Column({
+        nullable: true,
+        enum: tag_item
+    })
+    tag: string;
+
     @Column()
     rarity: number;
 
@@ -25,9 +32,15 @@ export default class Item {
     @Column()
     image_path: string;
 
-    @OneToMany(() => DungeonToItem, dungeonToItem => dungeonToItem.item)
+    @OneToMany(() => DungeonToItem, dungeonToItem => dungeonToItem.item, {
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    })
     dungeonToItem: DungeonToItem[];
 
-    @OneToMany(() => UserToItem, userToItem => userToItem.item)
+    @OneToMany(() => UserToItem, userToItem => userToItem.item, {
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    })
     userToItem: UserToItem[];
 }

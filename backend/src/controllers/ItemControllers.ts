@@ -12,6 +12,7 @@ export default {
             const {
                 name,
                 type,
+                tag,
                 rarity,
                 description,
             } = request.body;
@@ -28,6 +29,7 @@ export default {
             const item = itemRepository.create({
                 name: name,
                 type: type,
+                tag: tag,
                 rarity: rarity,
                 description: description,
                 image_path: '',
@@ -66,6 +68,7 @@ export default {
                 id,
                 name,
                 type,
+                tag,
                 rarity,
                 description,
             } = request.body;
@@ -92,6 +95,7 @@ export default {
 
             item.name = name;
             item.type = type;
+            item.tag = tag
             item.rarity = rarity;
             item.description = description;
 

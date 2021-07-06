@@ -1,3 +1,4 @@
+import roles from '../config/roles';
 import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import Character from './Character'
 import UserToItem from './UserToItem';
@@ -19,7 +20,10 @@ export default class User {
     @Column()
     password: string;
 
-    @Column()
+    @Column({
+        enum: roles,
+        default: roles.User
+    })
     role: string;
 
     @Column()
@@ -32,7 +36,10 @@ export default class User {
     @JoinTable()
     characters: Character[];
 
-    @OneToMany(() => UserToItem, userToItem => userToItem.user)
+    @OneToMany(() => UserToItem, userToItem => userToItem.user, {
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE"
+    })
     @JoinTable()
     inventory: UserToItem[];
 
