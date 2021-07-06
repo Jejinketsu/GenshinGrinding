@@ -1,0 +1,23 @@
+.OkMessage {
+  font-size: 1.6em;
+  font-weight: 700;
+  background-color: rgba(34, 238, 58, 0.823);
+  text-align: center;
+  padding: 8px 20px;
+  border-radius: 5px;
+  color: #fff;
+  margin-top: 20px;
+}
+
+
+.showMessage {
+  opacity: 1;
+  animation: showMessage 4s forwards;
+}
+
+@keyframes showMessage {
+  to {
+    opacity: 0;
+    transform: initial;
+  }
+}

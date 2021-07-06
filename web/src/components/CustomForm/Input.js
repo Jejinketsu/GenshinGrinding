@@ -2,6 +2,7 @@ import React from "react";
 import "../../styles/components/Input.css";
 import ErrorMessage from "./ErrorMessage";
 
+
 const Input = ({ label, type, name, erro, value, onChange, onBlur, classComponent }) => {
 
   return (

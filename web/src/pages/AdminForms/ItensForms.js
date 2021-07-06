@@ -8,6 +8,7 @@ import useSelect from "../../components/CustomHooks/useSelect";
 import Title from "../../components/CustomForm/Title";
 import Button from "../../components/CustomForm/Button";
 import useInputFile from "../../components/CustomHooks/useInputFile";
+import OkMessage from "../../components/CustomForm/OkMessage";
 
 const ItensForms = () => {
   const itemName = useForm("text");
@@ -39,7 +40,6 @@ const ItensForms = () => {
       <Title title="Itens" />
 
       <form onSubmit={handleSubmit} className="ItensCadForm">
-
         <Input
           label="Name"
           type="text"
@@ -48,9 +48,13 @@ const ItensForms = () => {
           {...itemName}
         />
 
-        <Select label="Type Item" classComponent="select1" {...TypeItemSelect} />
+        <Select
+          label="Type Item"
+          classComponent="select1"
+          {...TypeItemSelect}
+        />
         <Select label="Rarity" classComponent="select2" {...raritySelect} />
-        
+
         <Input
           label="Description"
           type="text"
