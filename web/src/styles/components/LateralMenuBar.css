@@ -7,18 +7,35 @@
   flex-direction: column;
 }
 
+.hide {
+  background-color: var(--color-background-secondary);
+  width: 50px;
+  height: 100vh;
+  position: relative;
+}
+
 .Menu-logo {
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-.Menu-logo a{
+.Menu-logo a {
   width: 40%;
 }
 
 .Menu-logo img {
   width: 100%;
+}
+
+.fa-times,
+.fa-bars {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 3.5em;
+  cursor: pointer;
+  display: none;
 }
 
 .Admin-perfil {
@@ -65,12 +82,12 @@
   position: relative;
 }
 
-.Menu-navigate ul li .setOption{
+.Menu-navigate ul li .setOption {
   position: absolute;
   width: 3px;
   height: 90%;
   right: 0;
-  background:transparent;
+  background: transparent;
 }
 
 .Menu-navigate ul li:hover {
@@ -116,14 +133,32 @@ nav ul a {
   color: rgba(255, 255, 255, 0.5);
 }
 
-.active{
+.active {
   color: rgba(255, 255, 255, 1);
 }
 
-.active li img{
+.active li img {
   opacity: 1;
 }
 
-.Menu-navigate ul .active li .setOption{
+.Menu-navigate ul .active li .setOption {
   background: #fff;
+}
+
+@media (max-width: 1024px) {
+  .fa-times,
+  .fa-bars {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  .hide,
+  .Menu-lateral {
+    position: fixed;
+    z-index: 1;
+  }
+  .forms {
+    margin-left: 50px;
+  }
 }
