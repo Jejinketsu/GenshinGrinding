@@ -9,29 +9,57 @@ import Title from "../../components/CustomForm/Title";
 import Button from "../../components/CustomForm/Button";
 import useInputFile from "../../components/CustomHooks/useInputFile";
 
+import api from '../../services/api';
+
 const ItensForms = () => {
   const itemName = useForm("text");
   const itemDescription = useForm("text");
   const itemImage = useInputFile();
 
   const TypeItemSelect = useSelect([
-    "Stone Ascension Material",
-    "Boss Ascension Material",
-    "World Ascension Material",
-    "Level Ascension Material",
+    "Character EXP Material",
+    "Character Ascension Material",
+    "Talent Level-Up Material",
+    "Common Ascension Material",
+    "Weapon Ascension Material",
+    "Local Specialties"
   ]);
 
-  const raritySelect = useSelect([
-    "★ One Star",
-    "★★ Two Stars",
-    "★★★ Three Stars",
-    "★★★★ Four Stars",
-    "★★★★★ Five Stars",
-  ]);
+  const raritySelect = useSelect([1, 2, 3, 4, 5]);
 
-  function handleSubmit(event) {
+  const tagSelect = useSelect([
+    "stone",
+    "boss_item",
+    "event",
+    "book",
+    "world",
+    "local",
+    "level"
+  ])
+
+  async function handleSubmit(event) {
     event.preventDefault();
-    // REALIZAR POST NO BD;
+    
+    const data = new FormData();
+
+    data.append("name", itemName.value);
+    data.append("type", TypeItemSelect.value);
+    data.append("rarity", raritySelect.value);
+    data.append("tag", tagSelect.value);
+    data.append("description", itemDescription.value);
+    data.append("file", itemImage.value);
+
+    alert()
+
+    api.post('/create_item', data, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem("token")}`,
+        'Content-Type': 'multipart/form-data'
+      }
+    }).then((value) => {
+      alert(value.status);
+    })
+    
   }
 
   return (
@@ -50,6 +78,7 @@ const ItensForms = () => {
 
         <Select label="Type Item" classComponent="select1" {...TypeItemSelect} />
         <Select label="Rarity" classComponent="select2" {...raritySelect} />
+        <Select label="Tag" classComponent="select3" {...tagSelect} />
         
         <Input
           label="Description"
