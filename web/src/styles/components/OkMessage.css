@@ -12,7 +12,7 @@
 
 .showMessage {
   opacity: 1;
-  animation: showMessage 4s forwards;
+  animation: showMessage 6s forwards;
 }
 
 @keyframes showMessage {

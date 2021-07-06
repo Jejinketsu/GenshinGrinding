@@ -16,6 +16,7 @@ const ItensForms = () => {
   const itemName = useForm("text");
   const itemDescription = useForm("text");
   const itemImage = useInputFile();
+  const [success, setSuccess] = React.useState(null);
 
   const TypeItemSelect = useSelect([
     "Character EXP Material",
@@ -50,15 +51,16 @@ const ItensForms = () => {
     data.append("description", itemDescription.value);
     data.append("file", itemImage.value);
 
-    alert()
-
     api.post('/create_item', data, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem("token")}`,
         'Content-Type': 'multipart/form-data'
       }
     }).then((value) => {
-      alert(value.status);
+      if(value.status === 201) setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+      }, 7000);
     })
     
   }
@@ -100,6 +102,7 @@ const ItensForms = () => {
         />
 
         <Button Text="Confirm" classComponent="button" />
+        {success && <OkMessage message="Item successful registered!"/>}
       </form>
     </div>
   );

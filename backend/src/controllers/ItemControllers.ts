@@ -54,7 +54,7 @@ export default {
 
             logger.info(`item ${item.name} successful created`);
 
-            return response.sendStatus(202);
+            return response.sendStatus(201);
 
         } catch(error) {
             console.error("item create error >>: ", error.message);
