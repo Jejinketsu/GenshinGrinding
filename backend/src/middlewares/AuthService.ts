@@ -25,7 +25,7 @@ export default {
             next();
 
         } catch(error) {
-            console.log("user login error >>: ", error.message);
+            console.log("authorize error >>: ", error.message);
             next(error);
         }
     },
