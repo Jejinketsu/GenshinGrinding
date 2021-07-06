@@ -86,7 +86,6 @@ export default {
 
             if(!password_isValid) throw new WrongPasswordException(username);
 
-            console.error('user: ' + user);
             const token = jwt.sign({user: user?.id}, <string> process.env.SECRET, {
                 expiresIn: 86400,
             });
