@@ -7,6 +7,7 @@ import UsersController from './controllers/UsersControllers';
 import ItemController from './controllers/ItemControllers';
 import DungeonControllers from './controllers/DungeonControllers';
 import CharacterControllers from './controllers/CharacterControllers';
+import LevelingControllers from './controllers/LevelingControllers';
 
 const routes = Router();
 const upload = multer(uploadConfig);
@@ -50,6 +51,9 @@ routes.post('/create_character', AuthService.authorize, AuthService.authRole([Ro
 routes.get('/get_characters', AuthService.authorize, CharacterControllers.getAll);
 routes.delete('/delete_character', AuthService.authorize, AuthService.authRole([Role.Admin, Role.Admin]),
     CharacterControllers.delete);
+
+// Utils
+routes.get('/required_itens', AuthService.authorize, LevelingControllers.ascencionStandart);
 
 export default routes;
 
