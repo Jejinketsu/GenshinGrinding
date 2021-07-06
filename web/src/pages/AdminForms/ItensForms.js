@@ -1,18 +1,20 @@
 import React from "react";
-import "../../styles/components/DashboardForms.css";
+import "../../styles/components/ItensForm.css";
 import Input from "../../components/CustomForm/Input";
+import InputFile from "../../components/CustomForm/InputFile";
 import Select from "../../components/CustomForm/Select";
 import useForm from "../../components/CustomHooks/useForm";
 import useSelect from "../../components/CustomHooks/useSelect";
 import Title from "../../components/CustomForm/Title";
 import Button from "../../components/CustomForm/Button";
+import useInputFile from "../../components/CustomHooks/useInputFile";
 
 const ItensForms = () => {
-  const [img, setImg] = React.useState({});
   const itemName = useForm("text");
   const itemDescription = useForm("text");
+  const itemImage = useInputFile();
 
-  const itemSelect = useSelect([
+  const TypeItemSelect = useSelect([
     "Stone Ascension Material",
     "Boss Ascension Material",
     "World Ascension Material",
@@ -27,13 +29,6 @@ const ItensForms = () => {
     "★★★★★ Five Stars",
   ]);
 
-  function handleImgChange({ target }) {
-    setImg({
-      preview: URL.createObjectURL(target.files[0]),
-      raw: target.files[0],
-    });
-  }
-
   function handleSubmit(event) {
     event.preventDefault();
     // REALIZAR POST NO BD;
@@ -43,7 +38,8 @@ const ItensForms = () => {
     <div>
       <Title title="Itens" />
 
-      <form onSubmit={handleSubmit} className="CadForm">
+      <form onSubmit={handleSubmit} className="ItensCadForm">
+
         <Input
           label="Name"
           type="text"
@@ -51,8 +47,10 @@ const ItensForms = () => {
           classComponent="input1"
           {...itemName}
         />
-        <Select label="Type Item" classComponent="select1" {...itemSelect} />
+
+        <Select label="Type Item" classComponent="select1" {...TypeItemSelect} />
         <Select label="Rarity" classComponent="select2" {...raritySelect} />
+        
         <Input
           label="Description"
           type="text"
@@ -61,23 +59,13 @@ const ItensForms = () => {
           {...itemDescription}
         />
 
-        <label className="labelImage" htmlFor="img">Upload image</label>
-        <input
-          className="file input3"
-          type="file"
+        <InputFile
+          label="Upload Image"
           name="img"
-          id="img"
-          onChange={handleImgChange}
+          classComponent="input3"
+          {...itemImage}
         />
 
-        <label className="previewImg" htmlFor="img">
-          {img.preview && (
-            <div
-              className="preview"
-              style={{ backgroundImage: `url('${img.preview}')` }}
-            ></div>
-          )}
-        </label>
         <Button Text="Confirm" classComponent="button" />
       </form>
     </div>
