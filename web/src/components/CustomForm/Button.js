@@ -1,11 +1,11 @@
 import React from "react";
 import "../../styles/components/Button.css";
 
-const Button = ({Text}) => {
+const Button = ({Text, classComponent}) => {
 
   return (
     <React.Fragment>
-      <button className="componentButton">{Text}</button>
+      <button className={`componentButton ${classComponent}`}>{Text}</button>
     </React.Fragment>
   );
 };

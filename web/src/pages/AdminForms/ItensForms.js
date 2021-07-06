@@ -34,37 +34,51 @@ const ItensForms = () => {
     });
   }
 
+  function handleSubmit(event) {
+    event.preventDefault();
+    // REALIZAR POST NO BD;
+  }
+
   return (
-    <div className="CadForm">
+    <div>
       <Title title="Itens" />
 
-      <form>
-        <Input label="Name" type="text" name="itemName" {...itemName} />
-        <Select label="Type Item" {...itemSelect} />
-        <Select label="Rarity" {...raritySelect} />
+      <form onSubmit={handleSubmit} className="CadForm">
+        <Input
+          label="Name"
+          type="text"
+          name="itemName"
+          classComponent="input1"
+          {...itemName}
+        />
+        <Select label="Type Item" classComponent="select1" {...itemSelect} />
+        <Select label="Rarity" classComponent="select2" {...raritySelect} />
         <Input
           label="Description"
           type="text"
           name="itemDescription"
+          classComponent="input2"
           {...itemDescription}
         />
+
+        <label className="labelImage" htmlFor="img">Upload image</label>
         <input
-          className="file"
+          className="file input3"
           type="file"
           name="img"
           id="img"
           onChange={handleImgChange}
         />
 
-        <div className="previewImg">
+        <label className="previewImg" htmlFor="img">
           {img.preview && (
             <div
               className="preview"
               style={{ backgroundImage: `url('${img.preview}')` }}
             ></div>
           )}
-        </div>
-        <Button Text="Confirm" />
+        </label>
+        <Button Text="Confirm" classComponent="button" />
       </form>
     </div>
   );

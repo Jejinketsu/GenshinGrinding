@@ -1,10 +1,10 @@
 import React from "react";
 import "../../styles/components/Select.css";
 
-const Select = ({ label, name, onChange, options }) => {
+const Select = ({ label, name, onChange, options, classComponent }) => {
   return (
     <React.Fragment>
-      <div className="CustomSelect">
+      <div className={`CustomSelect ${classComponent}`}>
         <label htmlFor={name}>{label}</label>
 
         <div className="select">
