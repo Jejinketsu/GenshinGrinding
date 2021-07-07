@@ -49,7 +49,7 @@ const ItensForms = () => {
     data.append("rarity", raritySelect.value);
     data.append("tag", tagSelect.value);
     data.append("description", itemDescription.value);
-    data.append("file", itemImage.value);
+    data.append("file", itemImage.value.raw);
 
     api.post('/create_item', data, {
       headers: {
