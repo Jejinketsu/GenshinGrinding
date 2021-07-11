@@ -16,7 +16,7 @@ const ItensForms = () => {
   const itemName = useForm("text");
   const itemDescription = useForm("text");
   const itemImage = useInputFile();
-  const [sucess, setSucess] = React.useState(false);
+  const [success, setSuccess] = React.useState(null);
 
   const TypeItemSelect = useSelect([
     "Character EXP Material",
@@ -57,7 +57,10 @@ const ItensForms = () => {
         'Content-Type': 'multipart/form-data'
       }
     }).then((value) => {
-      console.log(value.status);
+      if(value.status === 201) setSuccess(true);
+      setTimeout(() => {
+        setSuccess(false);
+      }, 7000);
     })
     
   }
@@ -99,9 +102,9 @@ const ItensForms = () => {
         />
 
         <Button Text="Confirm" classComponent="button" />
-
-        <OkMessage message="Iten sucessful registered" />
+        {success && <OkMessage message="Item successful registered!"/>}
       </form>
+      {console.log(itemImage.value.raw)}
     </div>
   );
 };
