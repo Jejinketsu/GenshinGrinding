@@ -67,7 +67,6 @@ const ItensForms = () => {
 
   return (
     <div>
-      <Title title="Itens" />
 
       <form onSubmit={handleSubmit} className="ItensCadForm">
         <Input
