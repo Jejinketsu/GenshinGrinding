@@ -5,7 +5,6 @@ import InputFile from "../../components/CustomForm/InputFile";
 import Select from "../../components/CustomForm/Select";
 import useForm from "../../components/CustomHooks/useForm";
 import useSelect from "../../components/CustomHooks/useSelect";
-import Title from "../../components/CustomForm/Title";
 import Button from "../../components/CustomForm/Button";
 import useInputFile from "../../components/CustomHooks/useInputFile";
 import OkMessage from "../../components/CustomForm/OkMessage";
@@ -103,7 +102,6 @@ const ItensForms = () => {
         <Button Text="Confirm" classComponent="button" />
         {success && <OkMessage message="Item successful registered!"/>}
       </form>
-      {console.log(itemImage.value.raw)}
     </div>
   );
 };
