@@ -5,7 +5,7 @@ import LateralMenuBar from "../components/LateralMenuBar";
 import UserList from "./AdminForms/UserList";
 import DomainForm from "./AdminForms/DomainForms";
 import CharactersForms from "./AdminForms/CharactersForms";
-import ItensForms from "./AdminForms/ItensForms";
+import ItemManage from "./AdminForms/ItemManage";
 
 const Dashboard = () => {
   return (
@@ -19,7 +19,7 @@ const Dashboard = () => {
           <Route path="/" element={<UserList />} />
           <Route path="formDomain" element={<DomainForm />} />
           <Route path="formCharacters" element={<CharactersForms />} />
-          <Route path="formItens" element={<ItensForms />} />
+          <Route path="itemManage/*" element={<ItemManage />} />
         </Routes>
       </section>
     </section>

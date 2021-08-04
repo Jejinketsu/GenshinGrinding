@@ -83,7 +83,7 @@ const LateralMenuBar = () => {
               </li>
             </NavLink>
 
-            <NavLink to="/dashboard/formItens">
+            <NavLink to="/dashboard/itemManage">
               <li>
                 <img src={itemIcon} alt="itemIcon" /> Itens
                 <div className="setOption"></div>

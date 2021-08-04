@@ -67,7 +67,6 @@ const ItensForms = () => {
 
   return (
     <div>
-      <Title title="Itens" />
 
       <form onSubmit={handleSubmit} className="ItensCadForm">
         <Input
@@ -104,6 +103,7 @@ const ItensForms = () => {
         <Button Text="Confirm" classComponent="button" />
         {success && <OkMessage message="Item successful registered!"/>}
       </form>
+      {console.log(itemImage.value.raw)}
     </div>
   );
 };
