@@ -15,7 +15,7 @@ Genshin Grinding
 <p align="center">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Jejinketsu/GenshinGrinding">
   <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/Jejinketsu/GenshinGrinding">
-  <img alt="GitHub last commit" src="https://img.shields.io/github/Jejinketsu/GenshinGrinding">
+  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Jejinketsu/GenshinGrinding">
   <img alt="License" src="https://img.shields.io/github/license/Jejinketsu/GenshinGrinding">
 </p>
 
