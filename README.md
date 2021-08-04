@@ -37,14 +37,14 @@ Genshin Grinding
 
 Genshin Grinding é uma aplicação web com o objetivo de auxiliar os jogadores de Genshin Impact, ARPG chinês da empresa Mihoyo, a planejarem o fortalecimento de seus personagens e otimizar o uso de seus recursos do jogo.
 
-Através do frontend web, os players podem se cadastrar, e então adicionar itens e personagens que possui no jogo. A tarefa do site é informá-lo o quanto já tem e de quanto mais precisa para elevar seus personangens até o nivel máximo.
+Através do frontend web, os players podem se cadastrar, e então adicionar itens e personagens que possuem no jogo. A tarefa do site é informá-lo o quanto já tem e de quanto mais precisa para elevar seus personangens até o nivel máximo.
 
 # Tecnologias
 
 Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 
 - [Node.js](https://nodejs.org/)
-- [React](https://reactjs.org)
+- [ReactJs](https://reactjs.org)
 - [TypeORM](https://typeorm.io/#/)
 - [Express](https://expressjs.com/pt-br/)
 
@@ -53,7 +53,7 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 ### Requisitos
 
 - [Node.js](https://nodejs.org/)
-- [React](https://reactjs.org)
+- [ReactJs](https://reactjs.org)
 - [npm](https://npmjs.com/)
 
 ## Backend
