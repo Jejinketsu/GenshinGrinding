@@ -10,7 +10,7 @@ const ItemManage = () => {
       <Title title="Itens" />
       <div>
         <Routes>
-          <Route path="/" element={<ItensListing />} end />
+          <Route path="//*" element={<ItensListing />} end />
           <Route path="formItens" element={<ItensForms />} />
         </Routes>
       </div>

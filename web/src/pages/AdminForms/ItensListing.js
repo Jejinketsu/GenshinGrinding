@@ -15,7 +15,6 @@ const ItensListing = () => {
       <AddItemBtn />
 
       <ItemBlock />
-
     </div>
   );
 };
