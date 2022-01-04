@@ -47,7 +47,7 @@ export default {
                 username,
                 nickname,
                 password: encrypted_password,
-                image_path: <string> filepath,
+                image_path: <string> filepath || '',
             });
             
             await usersRepository.save(user);
