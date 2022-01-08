@@ -1,4 +1,4 @@
-import Routas from "./Routas";
+import Routas from "./Routes";
 import './styles/global.css';
 
 function App() {
