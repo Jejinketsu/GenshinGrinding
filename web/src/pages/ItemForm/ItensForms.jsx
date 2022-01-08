@@ -16,7 +16,6 @@ const ItensForms = () => {
   const itemDescription = useForm('text');
   const itemImage = useInputFile();
   const [success, setSuccess] = React.useState(null);
-
   const TypeItemSelect = useSelect([
     'Character EXP Material',
     'Character Ascension Material',
@@ -25,9 +24,7 @@ const ItensForms = () => {
     'Weapon Ascension Material',
     'Local Specialties',
   ]);
-
   const raritySelect = useSelect([1, 2, 3, 4, 5]);
-
   const tagSelect = useSelect([
     'stone',
     'boss_item',
@@ -67,32 +64,39 @@ const ItensForms = () => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Input
-        label='Name'
-        type='text'
-        name='itemName'
-        classComponent='input1'
-        {...itemName}
-      />
+      <div>
+        <Input
+          label='Name'
+          type='text'
+          name='itemName'
+          classComponent='left-column'
+          {...itemName}
+        />
 
-      <Select label='Type Item' classComponent='select1' {...TypeItemSelect} />
-      <Select label='Rarity' classComponent='select2' {...raritySelect} />
-      <Select label='Tag' classComponent='select3' {...tagSelect} />
+        <Select
+          label='Type Item'
+          classComponent='left-column'
+          {...TypeItemSelect}
+        />
+        <Select label='Rarity' classComponent='select2' {...raritySelect} />
+        <Select label='Tag' classComponent='select3' {...tagSelect} />
 
-      <Input
-        label='Description'
-        type='text'
-        name='itemDescription'
-        classComponent='input2'
-        {...itemDescription}
-      />
+        <Input
+          label='Description'
+          type='text'
+          name='itemDescription'
+          classComponent='left-column'
+          {...itemDescription}
+        />
+      </div>
 
       <InputFile
         label='Upload Image'
         name='img'
-        classComponent='input3'
+        classComponent='right-column'
         {...itemImage}
       />
+      
 
       <Button Text='Confirm' classComponent='button' />
       {success && <OkMessage message='Item successful registered!' />}
