@@ -11,7 +11,7 @@
   justify-content: space-between;
   margin: 0 auto;
   max-width: 1920px;
-  padding: 8px 16px;
+  padding: 8px 40px;
 }
 
 .top-bar .wrapper .logo {
@@ -61,11 +61,12 @@
 .top-bar .wrapper .wrapper-left .profile-area {
   align-items: center;
   background: var(--color-background-primary);
-  border-radius: 60px;
+  border-radius: 6px;
   display: flex;
   justify-content: center;
   margin-left: 16px;
   padding: 8px;
+  cursor: pointer;
 }
 
 .top-bar .wrapper .wrapper-left .profile-area .nickname {
@@ -78,5 +79,50 @@
   height: 40px;
 }
 
+/* -------------------------------------------- */
 
+.profile-area ul li {
+	background: var(--color-background-primary);
+	float: left;
+	width: 200px;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
+	font-size: 1.6rem;
+	position: relative;
+}
 
+.profile-area ul li:hover {
+	background-color: var(--color-blue);
+}
+
+.profile-area ul {
+	padding: 0px;
+}
+
+.profile-area ul ul {
+	display: none;
+}
+
+.profile-area ul li:hover > ul {
+	display:block;
+}
+
+.profile-area ul ul ul {
+	margin-left: 201px;
+	top: 0px;
+	position: absolute;
+}
+
+.profile-area ul ul li:hover {
+	background-color: var(--color-blue);
+}
+
+.profile-area ul ul ul li:hover {
+	background-color: var(--color-blue);
+}
+
+.profile-area a{
+	color: white;
+	text-decoration: none;
+}

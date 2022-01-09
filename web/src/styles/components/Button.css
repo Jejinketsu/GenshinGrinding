@@ -1,3 +1,4 @@
+/*
 .componentButton {
   display: flex;
   align-items: center;
@@ -17,4 +18,26 @@
 .componentButton:hover {
   background: var(--color-background-primary);
   color: rgba(255, 255, 255, 1);
+}
+*/
+
+.componentButton {
+  width: 100%;
+  height: 4.6rem;
+  background-color: var(--color-primary);
+  color: var(--color-button-text);
+  border: 0;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  font-size: 1.6rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  transition: 200ms;
+  margin-top: 9px;
+}
+
+.componentButton:hover {
+  opacity: 0.8;
 }
