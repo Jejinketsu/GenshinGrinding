@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router";
 import AddItemBtn from "../../components/ItensForm/AddItemBtn";
-import ItensForms from "../AdminForms/ItensForms";
+import ItensForms from "./ItensForms";
 import ItemBlock from "../../components/ItensForm/ItemBlock";
 
 const ItensListing = () => {
