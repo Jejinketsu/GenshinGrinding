@@ -39,7 +39,7 @@ function TopBar({pageLink}) {
                 <FaRegUserCircle size={32} color='#ffffff' />
                 {/* <img src={avatar} alt='Avatar image' className='avatar' /> */}
                 <ul>
-                  <li><Link to='/characters'>Personagens</Link></li>
+                  <li><Link to='/characters'>Characters</Link></li>
                   <li><Link to='/logout'>Logout</Link></li>
                 </ul>
               </li>

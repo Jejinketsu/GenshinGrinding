@@ -93,7 +93,7 @@
 }
 
 .profile-area ul li:hover {
-	background-color: var(--color-blue);
+  background: var(--color-primary);
 }
 
 .profile-area ul {
@@ -115,11 +115,11 @@
 }
 
 .profile-area ul ul li:hover {
-	background-color: var(--color-blue);
+  background: var(--color-primary);
 }
 
 .profile-area ul ul ul li:hover {
-	background-color: var(--color-blue);
+  background: var(--color-primary);
 }
 
 .profile-area a{
