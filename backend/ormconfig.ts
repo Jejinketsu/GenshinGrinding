@@ -21,7 +21,7 @@ export default [
     {
         "name": "default",
         "type": "sqlite",
-        "database": "./src/datebase/datebase.sqlite",
+        "database": "./src/database/database.sqlite",
         "migrations":[
             "./src/database/migrations/*.ts"
         ],
