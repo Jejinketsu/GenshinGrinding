@@ -81,9 +81,14 @@
 
 /* -------------------------------------------- */
 
+.profile-area svg {
+  display: flex;
+  float: right;
+}
+
 .profile-area ul li {
 	background: var(--color-background-primary);
-	float: left;
+	/*float: left;*/
 	width: 200px;
 	height: 40px;
 	text-align: center;
@@ -93,7 +98,8 @@
 }
 
 .profile-area ul li:hover {
-	background-color: var(--color-blue);
+  background: var(--color-primary);
+  border-radius: 6px;
 }
 
 .profile-area ul {
@@ -108,18 +114,8 @@
 	display:block;
 }
 
-.profile-area ul ul ul {
-	margin-left: 201px;
-	top: 0px;
-	position: absolute;
-}
-
 .profile-area ul ul li:hover {
-	background-color: var(--color-blue);
-}
-
-.profile-area ul ul ul li:hover {
-	background-color: var(--color-blue);
+  background: var(--color-primary);
 }
 
 .profile-area a{

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../services/api';
 
@@ -8,18 +8,12 @@ import logo from '../images/logo-genshin-2.png';
 import useForm from '../components/CustomHooks/useForm';
 import Input from '../components/CustomForm/Input';
 import useInputFile from '../components/CustomHooks/useInputFile';
+import InputFile from '../components/CustomForm/InputFile';
+import Button from '../components/CustomForm/Button';
 
 function Register(props) {
   const navigate = useNavigate();
   
-  /*
-  const [nickname, setNickname] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [rePassword, setRePassword] = useState('');
-  const [file, setFile] = useState(null);
-  */
-
   const nickname = useForm();
   const username = useForm('email');
   const password = useForm('password');
@@ -31,12 +25,12 @@ function Register(props) {
 
     const data = new FormData();
 
-    data.append('nickname', nickname);
-    data.append('username', username);
-    data.append('password', password);
-    data.append('file', file);
+    data.append('nickname', nickname.value);
+    data.append('username', username.value);
+    data.append('password', password.value);
+    data.append('file', file.value.raw);
 
-    const response = await api.post('/signup', data);
+    const response = await api.post('/signup', data, {headers:{'content-type':'multipart/form-data'}});
 
     navigate('/login');
   }
@@ -56,8 +50,8 @@ function Register(props) {
             <Input label="Username" type="email" name="username" {...username} required />
             <Input label="Password" type="password" name="password" {...password} required />
             <Input label="Confirm password" type="password" name="rePassword" {...rePassword} required />
-            <Input label="Image" type='file' name="file" {...file} />
-            <button type='submit' className='enter-app'>Cadastrar</button>
+            <InputFile label="Image" type='file' name="file" {...file} />
+            <Button Text={'Cadastrar'} />
           </div>
         </form>
 

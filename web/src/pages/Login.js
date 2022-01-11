@@ -1,37 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../services/api';
 
 import '../styles/pages/Form.css';
 
 import logo from '../images/logo-genshin-2.png';
-import { func } from 'prop-types';
+// import { func } from 'prop-types';
 import useForm from '../components/CustomHooks/useForm';
 import Input from '../components/CustomForm/Input';
+import Button from '../components/CustomForm/Button';
 
 function Login(props) {
   const navigate = useNavigate();
-
-  /*
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  */
   
-  const username = useForm('email');
-  const password = useForm('password');
+  const username = useForm();
+  const password = useForm();
 
   async function handleSubmit(event){
     event.preventDefault();
 
     const data = new FormData();
 
-    data.append('username', username);
-    data.append('password', password);
+    data.append('username', username.value);
+    data.append('password', password.value);
 
     const result = await api.get('/login', {
       auth: {
-        username: username,
-        password: password,
+        username: username.value,
+        password: password.value,
       }
     });
 
@@ -39,7 +35,6 @@ function Login(props) {
     /*api.defaults.headers.common['Authorization'] = result.data.token;*/
 
     navigate('/characters');
-
   }
 
   return (
@@ -53,8 +48,8 @@ function Login(props) {
         <form className='form' onSubmit={handleSubmit}>
           <div className='input-block'>
             <Input label="Username" type="email" name="username" {...username} required />
-            <Input label="Password" type="password" name="password" {...password} />
-            <button type='submit' className='enter-app'>Login</button>
+            <Input label="Password" type="password" name="password" {...password} required />
+            <Button Text={'Login'} />
           </div>
         </form>
 
