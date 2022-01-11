@@ -17,7 +17,7 @@
 .CustomInput .Input {
   width: 100%;
   padding: 10px 5px;
-  font-size: 2em;
+  font-size: 1.6em;
   background: var(--color-foreground-primary);
   border-radius: 0.8rem;
   border: 2px solid transparent;
