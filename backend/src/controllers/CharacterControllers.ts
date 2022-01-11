@@ -86,7 +86,7 @@ export default {
 
             return response.sendStatus(200);
 
-        } catch (error) {
+        } catch (error: any) {
             console.error("create character error: >>", error.message);
             next(error);
         }
@@ -111,7 +111,7 @@ export default {
 
             return response.status(200).json(characters);
 
-        } catch (error) {
+        } catch (error: any) {
             console.error("getAll character error: >>", error.message);
             next(error);
         }
@@ -152,7 +152,7 @@ export default {
 
             return response.sendStatus(200);
 
-        } catch (error) {
+        } catch (error: any) {
             console.error("delete character error: >>", error.message);
             next(error);
         }

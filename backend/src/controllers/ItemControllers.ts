@@ -56,7 +56,7 @@ export default {
 
             return response.sendStatus(201);
 
-        } catch(error) {
+        } catch (error: any) {
             console.error("item create error >>: ", error.message);
             next(error);
         }
@@ -105,7 +105,7 @@ export default {
 
             return response.status(200).json(item);
 
-        } catch (error) {
+        } catch (error: any) {
             console.error("item update error >>: ", error.message);
             next(error);
         }
@@ -122,7 +122,7 @@ export default {
             logger.info(`successful obtained all itens`);
 
             return response.status(200).json(itens);
-        } catch(error) {
+        } catch (error: any) {
             console.error("item list error >>: ", error.message);
             next(error);
         }
@@ -149,7 +149,7 @@ export default {
             logger.info(`successful deleted item with id ${id}`);
 
             return response.sendStatus(200);
-        } catch (error) {
+        } catch (error: any) {
             console.error("item delete error >>: ", error.message);
             next(error);
         }

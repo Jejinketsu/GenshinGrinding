@@ -24,7 +24,7 @@ export default {
 
             next();
 
-        } catch(error) {
+        } catch (error: any) {
             console.log("authorize error >>: ", error.message);
             next(error);
         }

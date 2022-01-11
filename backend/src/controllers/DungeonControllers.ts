@@ -44,7 +44,7 @@ export default {
 
             return response.status(200).json(dungeon);
 
-        } catch (error) {
+        } catch (error: any) {
             console.error('create dungeon error >>', error.message);
             next(error);
         }
@@ -64,7 +64,7 @@ export default {
             logger.info(`sucessful obteined all dungeons`);
                 
             return response.status(200).json(dungeons);
-        } catch (error) {
+        } catch (error: any) {
             console.error('list dungeon error >>', error.message);
             next(error);
         }
@@ -82,7 +82,7 @@ export default {
             logger.info(`successful deleted dungeon with id ${id}`);
 
             return response.sendStatus(200);
-        } catch(error) {
+        } catch (error: any) {
             console.error('delete dungeon error >>', error.message);
             next(error);
         }

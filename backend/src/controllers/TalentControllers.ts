@@ -35,7 +35,7 @@ export default {
 
             return talent;
 
-        } catch (error) {
+        } catch (error: any) {
             console.error("talent create error >>", error.message);
             return error;
         }
@@ -60,7 +60,7 @@ export default {
 
             logger.info(`talent ${talent.name} successful deleted`);
 
-        } catch(error) {
+        } catch (error: any) {
             console.error("talent create error >>", error.message);
             return error;
         }

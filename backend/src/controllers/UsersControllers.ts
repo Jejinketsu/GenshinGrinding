@@ -62,7 +62,7 @@ export default {
 
             return response.status(201).json({user: rest, token: token});
         
-        } catch(error){
+        } catch (error: any){
             console.error("user create error >>: ", error.message);
             next(error);
         }
@@ -96,7 +96,7 @@ export default {
             
             return response.json({user: rest, token: token});
 
-        } catch(error){
+        } catch (error: any){
             console.error("user login error >>: ", error.message);
             next(error);
         }
@@ -124,7 +124,7 @@ export default {
 
             return response.sendStatus(200);
 
-        } catch(error) {
+        } catch (error: any) {
             console.error("user login error >>: ", error.message);
             next(error);
         }
@@ -162,7 +162,7 @@ export default {
 
             return response.sendStatus(200);
 
-        } catch (error) {
+        } catch (error: any) {
             console.error("user addChar error >>: ", error.message);
             next(error);
         }
@@ -195,7 +195,7 @@ export default {
             await usersRepository.save(this_user);
 
             return response.sendStatus(200);
-        } catch (error) {
+        } catch (error: any) {
             console.error("user removeChar error >>: ", error.message);
             next(error);
         }
@@ -237,7 +237,7 @@ export default {
             logger.info(`addItem - user ${user.username} successful added item in their inventory`);
 
             return response.status(200).json(item);
-        } catch (error) {
+        } catch (error: any) {
             console.error("user addItem error >>: ", error.message);
             next(error);
         }
@@ -262,7 +262,7 @@ export default {
 
             return response.sendStatus(200);
 
-        } catch (error) {
+        } catch (error: any) {
             console.error("user removeItem error >>: ", error.message);
             next(error);
         }
@@ -301,7 +301,7 @@ export default {
 
             return response.status(200).json(item);
 
-        } catch (error) {
+        } catch (error: any) {
             console.error("user alterItem error >>: ", error.message);
             next(error);
         }
@@ -323,7 +323,7 @@ export default {
             logger.info(`getInventory - user ${user.username} successful obteined their inventory`);
 
             return response.status(200).json(this_user);
-        } catch (error) {
+        } catch (error: any) {
             console.error("user getInventory error >>: ", error.message);
             next(error);
         }

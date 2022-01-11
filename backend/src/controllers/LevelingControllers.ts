@@ -35,7 +35,7 @@ export default {
             }
 
             return response.status(200).json(data);
-        } catch (error){
+        } catch (error: any){
             console.log("ascencionStandart error >>:", error.message);
             return response.sendStatus(404);
         }
