@@ -37,7 +37,7 @@ const TopBarHome = ({ pageLink }) => {
 
           <div className="profile-area">
             <Link to="/login" className={"nickname"}>
-              SING IN
+              SIGN IN
             </Link>
           </div>
         </div>

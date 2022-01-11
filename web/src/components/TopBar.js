@@ -33,10 +33,17 @@ function TopBar({pageLink}) {
           </div>
 
           <div className='profile-area'>
-            <span className='nickname'>Aucelora</span>
-
-            <FaRegUserCircle size={32} color='#ffffff' />
-            {/* <img src={avatar} alt='Avatar image' className='avatar' /> */}
+            <ul>
+              <li>
+                <span className='nickname'>Aucelora</span>
+                <FaRegUserCircle size={32} color='#ffffff' />
+                {/* <img src={avatar} alt='Avatar image' className='avatar' /> */}
+                <ul>
+                  <li><Link to='/characters'>Characters</Link></li>
+                  <li><Link to='/logout'>Logout</Link></li>
+                </ul>
+              </li>
+            </ul>
           </div>
         </div>
       </nav>

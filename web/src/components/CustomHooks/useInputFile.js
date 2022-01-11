@@ -1,7 +1,7 @@
 import React from "react";
 
 const useInputFile = () => {
-  const [value, setValue] = React.useState({});
+  const [value, setValue] = React.useState('');
 
   function onChange({ target }) {
     setValue({

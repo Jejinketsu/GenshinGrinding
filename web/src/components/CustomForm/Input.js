@@ -3,7 +3,7 @@ import "../../styles/components/Input.css";
 import ErrorMessage from "./ErrorMessage";
 
 
-const Input = ({ label, type, name, erro, value, onChange, onBlur, classComponent }) => {
+const Input = ({ label, type, name, erro, value, onChange, onBlur, classComponent, required}) => {
 
   return (
     <React.Fragment>
@@ -18,6 +18,7 @@ const Input = ({ label, type, name, erro, value, onChange, onBlur, classComponen
           value={value}
           onChange={onChange}
           onBlur={onBlur}
+          required={required}
         />
         <ErrorMessage erro={erro} />
       </div>
