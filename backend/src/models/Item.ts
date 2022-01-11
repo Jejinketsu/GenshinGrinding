@@ -2,7 +2,7 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import DungeonToItem from './DungeonToItem';
 import UserToItem from './UserToItem';
 import tag_item from '../config/tag_item';
-
+import item_type from '../config/item_type';
 @Entity()
 export default class Item {
 
@@ -14,7 +14,9 @@ export default class Item {
     })
     name: string;
 
-    @Column()
+    @Column({
+        enum: item_type
+    })
     type: string;
 
     @Column({
