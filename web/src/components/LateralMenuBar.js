@@ -49,7 +49,7 @@ const LateralMenuBar = () => {
         <i onClick={handleClick} className="fas fa-times"></i>
 
         <div className="Menu-logo">
-          <a href="/">
+          <a href="">
             <img src={logo} alt="logo-genshin" />
           </a>
         </div>
