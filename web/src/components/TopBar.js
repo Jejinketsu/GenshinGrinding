@@ -40,7 +40,7 @@ function TopBar({pageLink}) {
                 {/* <img src={avatar} alt='Avatar image' className='avatar' /> */}
                 <ul>
                   <li><Link to='/characters'>Characters</Link></li>
-                  <li><Link to='/logout'>Logout</Link></li>
+                  <li><Link to='/'>Logout</Link></li>
                 </ul>
               </li>
             </ul>

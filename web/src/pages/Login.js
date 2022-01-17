@@ -9,14 +9,16 @@ import logo from '../images/logo-genshin-2.png';
 import useForm from '../components/CustomHooks/useForm';
 import Input from '../components/CustomForm/Input';
 import Button from '../components/CustomForm/Button';
+import ErrorMessage from '../components/CustomForm/ErrorMessage';
 
 function Login(props) {
   const navigate = useNavigate();
-  
+  const [message, setMessage] = React.useState('');
+
   const username = useForm();
   const password = useForm();
 
-  async function handleSubmit(event){
+  async function handleSubmit(event) {
     event.preventDefault();
 
     const data = new FormData();
@@ -24,17 +26,21 @@ function Login(props) {
     data.append('username', username.value);
     data.append('password', password.value);
 
-    const result = await api.get('/login', {
-      auth: {
-        username: username.value,
-        password: password.value,
-      }
-    });
+    try {
+      const result = await api.get('/login', {
+        auth: {
+          username: username.value,
+          password: password.value,
+        },
+      });
 
-    localStorage.setItem("token", result.data.token);
-    /*api.defaults.headers.common['Authorization'] = result.data.token;*/
+      localStorage.setItem('token', result.data.token);
+      /*api.defaults.headers.common['Authorization'] = result.data.token;*/
 
-    navigate('/characters');
+      navigate('/characters');
+    } catch (error) {
+      setMessage(error.response.data.message);
+    }
   }
 
   return (
@@ -47,9 +53,22 @@ function Login(props) {
 
         <form className='form' onSubmit={handleSubmit}>
           <div className='input-block'>
-            <Input label="Username" type="email" name="username" {...username} required />
-            <Input label="Password" type="password" name="password" {...password} required />
+            <Input
+              label='Username'
+              type='email'
+              name='username'
+              {...username}
+              required
+            />
+            <Input
+              label='Password'
+              type='password'
+              name='password'
+              {...password}
+              required
+            />
             <Button Text={'Login'} />
+            {message && <ErrorMessage erro={message} />}
           </div>
         </form>
 
