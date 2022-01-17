@@ -10,17 +10,18 @@ import Input from '../components/CustomForm/Input';
 import useInputFile from '../components/CustomHooks/useInputFile';
 import InputFile from '../components/CustomForm/InputFile';
 import Button from '../components/CustomForm/Button';
+import ErrorMessage from '../components/CustomForm/ErrorMessage';
 
 function Register(props) {
   const navigate = useNavigate();
-  
+  const [message, setMessage] = React.useState('');
   const nickname = useForm();
   const username = useForm('email');
   const password = useForm('password');
   const rePassword = useForm('password');
   const file = useInputFile('');
 
-  async function handleSubmit(event){
+  async function handleSubmit(event) {
     event.preventDefault();
 
     const data = new FormData();
@@ -30,9 +31,15 @@ function Register(props) {
     data.append('password', password.value);
     data.append('file', file.value.raw);
 
-    const response = await api.post('/signup', data, {headers:{'content-type':'multipart/form-data'}});
+    try {
+      const response = await api.post('/signup', data, {
+        headers: { 'content-type': 'multipart/form-data' },
+      });
 
-    navigate('/login');
+      navigate('/login');
+    } catch (error) {
+      setMessage(error.response.data.message);
+    }
   }
 
   return (
@@ -46,12 +53,37 @@ function Register(props) {
 
         <form className='form' onSubmit={handleSubmit}>
           <div className='input-block'>
-            <Input label="Nickname" type="text" name="nickname" {...nickname} required />
-            <Input label="Username" type="email" name="username" {...username} required />
-            <Input label="Password" type="password" name="password" {...password} required />
-            <Input label="Confirm password" type="password" name="rePassword" {...rePassword} required />
-            <InputFile label="Image" type='file' name="file" {...file} />
+            <Input
+              label='Nickname'
+              type='text'
+              name='nickname'
+              {...nickname}
+              required
+            />
+            <Input
+              label='Username'
+              type='email'
+              name='username'
+              {...username}
+              required
+            />
+            <Input
+              label='Password'
+              type='password'
+              name='password'
+              {...password}
+              required
+            />
+            <Input
+              label='Confirm password'
+              type='password'
+              name='rePassword'
+              {...rePassword}
+              required
+            />
+            <InputFile label='Image' type='file' name='file' {...file} />
             <Button Text={'Cadastrar'} />
+            {message && <ErrorMessage erro={message} />}
           </div>
         </form>
 
